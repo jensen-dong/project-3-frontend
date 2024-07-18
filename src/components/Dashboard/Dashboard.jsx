@@ -1,4 +1,6 @@
-const Dashboard = ({ user }) => {
+import Listings from "../Listings/Listings";
+
+const Dashboard = ({ listings, user }) => {
     return (
         <main>
             <h1>Welcome, {user.username}</h1>
@@ -6,6 +8,7 @@ const Dashboard = ({ user }) => {
                 This is the dashboard page where you, and only you, can see a dashboard of all of
                 your things.
             </p>
+            <Listings listings={listings} />
         </main>
     );
 };
