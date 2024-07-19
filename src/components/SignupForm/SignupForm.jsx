@@ -7,8 +7,15 @@ const SignupForm = (props) => {
     const [message, setMessage] = useState([""]);
     const [formData, setFormData] = useState({
         username: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone_number: "",
+        bio: "",
+        address: "",
         password: "",
         passwordConf: "",
+        isHost: false,
     });
 
     const updateMessage = (msg) => {
@@ -16,7 +23,9 @@ const SignupForm = (props) => {
     };
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, type, checked, value } = e.target
+        // setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData( { ...formData, [name]: type === "checkbox" ? checked : value})
     };
 
     const handleSubmit = async (e) => {
@@ -30,10 +39,10 @@ const SignupForm = (props) => {
         }
     };
 
-    const { username, password, passwordConf } = formData;
+    const { username, firstName, lastName, email, phone_number, bio, address, isHost, password, passwordConf,  } = formData;
 
     const isFormInvalid = () => {
-        return !(username && password && password === passwordConf);
+        return !(username && firstName && lastName && email && phone_number &&bio && address  && password && password === passwordConf);
     };
 
     return (
@@ -45,9 +54,69 @@ const SignupForm = (props) => {
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
-                        id="name"
+                        id="username"
                         value={username}
                         name="username"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="firstName">Firstname::</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        value={firstName}
+                        name="firstName"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="lastName">Lastname:</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        value={lastName}
+                        name="lastName"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="text"
+                        id="email"
+                        value={email}
+                        name="email"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="phone_number">Phone number:</label>
+                    <input
+                        type="text"
+                        id="phone_number"
+                        value={phone_number}
+                        name="phone_number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="bio">Bio:</label>
+                    <input
+                        type="text"
+                        id="bio"
+                        value={bio}
+                        name="bio"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="address">Address:</label>
+                    <input
+                        type="text"
+                        id="address"
+                        value={address}
+                        name="address"
                         onChange={handleChange}
                     />
                 </div>
@@ -68,6 +137,16 @@ const SignupForm = (props) => {
                         id="confirm"
                         value={passwordConf}
                         name="passwordConf"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="isHost">Host:</label>
+                    <input
+                        type="checkbox"
+                        id="isHost"
+                        value={isHost}
+                        name="isHost"
                         onChange={handleChange}
                     />
                 </div>

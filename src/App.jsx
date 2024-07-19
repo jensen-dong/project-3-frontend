@@ -5,7 +5,7 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
-import Listings from "./components/Listings/Listings";
+// import Listings from "./components/Listings/Listings";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 
