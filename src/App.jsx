@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Landing from "./components/Landing/Landing";
-import Dashboard from "./components/Dashboard/Dashboard";
+// import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import Listings from "./components/Listings/Listings";
+import Bookings from "./components/Bookings/Bookings";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 
@@ -48,13 +49,14 @@ const App = () => {
         <>
             <NavBar user={user} handleSignout={handleSignout} />
             <Routes>
-                <Route path="/" element={<Landing listings={listings} bookings={bookings} />} />
+                <Route path="/" element={<Landing listings={listings} />} />
+                <Route path="/listings" element={<Listings listings={listings} />} />
                 <Route path="/signup" element={<SignupForm setUser={setUser} />} />
                 <Route path="/signin" element={<SigninForm setUser={setUser} />} />
                 {user && (
                     <>
                         <Route path="/profile" /*element= Profile.jsx */ />
-                        <Route path="/mybookings" /*element= BookingList.jsx */ />
+                        <Route path="/mybookings" element={<Bookings bookings={bookings} />} />
                         {user.isHost && (
                             <>
                                 <Route path="/mylistings" /*element= ListingList.jsx */ />
