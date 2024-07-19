@@ -1,6 +1,7 @@
 import Listings from "../Listings/Listings";
+import Bookings from "../Bookings/Bookings";
 
-const Dashboard = ({ listings, user }) => {
+const Dashboard = ({ listings, user, bookings }) => {
     return (
         <main>
             <h1>Welcome, {user.username}</h1>
@@ -9,6 +10,7 @@ const Dashboard = ({ listings, user }) => {
                 your things.
             </p>
             <Listings listings={listings} />
+            <Bookings bookings={bookings}/>
         </main>
     );
 };
