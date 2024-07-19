@@ -6,6 +6,7 @@ import Landing from "./components/Landing/Landing";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import Listings from "./components/Listings/Listings";
+import ListingDetail from "./components/Listings/ListingDetail";
 import Bookings from "./components/Bookings/Bookings";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
@@ -51,6 +52,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Landing listings={listings} />} />
                 <Route path="/listings" element={<Listings listings={listings} />} />
+                <Route path="/listings/:id" element={<ListingDetail />} />
                 <Route path="/signup" element={<SignupForm setUser={setUser} />} />
                 <Route path="/signin" element={<SigninForm setUser={setUser} />} />
                 {user && (

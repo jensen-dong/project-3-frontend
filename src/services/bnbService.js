@@ -14,6 +14,20 @@ const getAllListings = async () => {
     }
 };
 
+const getListingById = async (id) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 const getAllBookings = async() => {
     try {
 
@@ -33,4 +47,4 @@ const getAllBookings = async() => {
     }
 }
 
-export { getAllListings, getAllBookings }
+export { getAllListings, getAllBookings, getListingById }
