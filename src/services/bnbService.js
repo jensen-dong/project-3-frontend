@@ -12,20 +12,25 @@ const getAllListings = async () => {
     } catch (err) {
         console.log(err)
     }
-}
+};
 
-const getListingById = async (id) => {
+const getAllBookings = async() => {
     try {
-        const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
-            method: 'GET',
+
+        const token = localStorage.getItem("token")
+        
+        const res = await fetch(`${BACKEND_URL}/bookings/mybookings`, {
+            method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             }
-        })
+        });
         return res.json()
-    } catch (err) {
-        console.log(err)
+
+    } catch (error) {
+        console.log("error", error)
     }
 }
 
-export { getAllListings,getListingById }
+export { getAllListings, getAllBookings }

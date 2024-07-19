@@ -1,6 +1,9 @@
+// I think I want to modify this more after we create the Listing Cards, might be cool to display these on log in page to make it look a little less bland.
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
+import "./SignInForm.css";
 
 const SigninForm = (props) => {
     const navigate = useNavigate();
@@ -31,11 +34,11 @@ const SigninForm = (props) => {
     };
 
     return (
-        <main>
+        <main className="signin-main">
             <h1>Log In</h1>
-            <p>{message}</p>
-            <form autoComplete="off" onSubmit={handleSubmit}>
-                <div>
+            {/* <p>{message}</p> Might replace with some text. */}
+            <form autoComplete="off" onSubmit={handleSubmit} className="signin-form">
+                <div className="signin-field">
                     <label htmlFor="email">Username:</label>
                     <input
                         type="text"
@@ -44,9 +47,10 @@ const SigninForm = (props) => {
                         value={formData.username}
                         name="username"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
+                <div className="signin-field">
                     <label htmlFor="password">Password:</label>
                     <input
                         type="password"
@@ -55,12 +59,15 @@ const SigninForm = (props) => {
                         value={formData.password}
                         name="password"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <button>Log In</button>
+                <div className="signin-buttons">
+                    <button type="submit" className="btn btn1">
+                        Log In
+                    </button>
                     <Link to="/">
-                        <button>Cancel</button>
+                        <button className="btn btn2">Cancel</button>
                     </Link>
                 </div>
             </form>
