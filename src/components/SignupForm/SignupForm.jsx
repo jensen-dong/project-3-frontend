@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
+import "./SignUpForm.css"
 
 const SignupForm = (props) => {
     const navigate = useNavigate();
@@ -11,8 +12,6 @@ const SignupForm = (props) => {
         lastName: "",
         email: "",
         phone_number: "",
-        bio: "",
-        address: "",
         password: "",
         passwordConf: "",
         isHost: false,
@@ -39,109 +38,96 @@ const SignupForm = (props) => {
         }
     };
 
-    const { username, firstName, lastName, email, phone_number, bio, address, isHost, password, passwordConf,  } = formData;
+    const { username, firstName, lastName, email, phone_number, isHost, password, passwordConf,  } = formData;
 
     const isFormInvalid = () => {
-        return !(username && firstName && lastName && email && phone_number &&bio && address  && password && password === passwordConf);
+        return !(username && firstName && lastName && email && phone_number && password && password === passwordConf);
     };
 
     return (
-        <main>
+        <main className="signup-main">
             <h1>Sign Up</h1>
             <p>{message}</p>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
+            <form onSubmit={handleSubmit} className="signup-form">
+                <div className="signup-field">
+                    <label htmlFor="username">Username: </label>
                     <input
                         type="text"
                         id="username"
                         value={username}
                         name="username"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="firstName">Firstname::</label>
+                <div className="signup-field">
+                    <label htmlFor="firstName">First Name: </label>
                     <input
                         type="text"
                         id="firstName"
                         value={firstName}
                         name="firstName"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="lastName">Lastname:</label>
+                <div className="signup-field">
+                    <label htmlFor="lastName">Last Name: </label>
                     <input
                         type="text"
                         id="lastName"
                         value={lastName}
                         name="lastName"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
+                <div className="signup-field">
+                    <label htmlFor="email">Email: </label>
                     <input
                         type="text"
                         id="email"
                         value={email}
                         name="email"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="phone_number">Phone number:</label>
+                <div className="signup-field">
+                    <label htmlFor="phone_number">Phone Number: </label>
                     <input
                         type="text"
                         id="phone_number"
                         value={phone_number}
                         name="phone_number"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="bio">Bio:</label>
-                    <input
-                        type="text"
-                        id="bio"
-                        value={bio}
-                        name="bio"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="address">Address:</label>
-                    <input
-                        type="text"
-                        id="address"
-                        value={address}
-                        name="address"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
+                <div className="signup-field">
+                    <label htmlFor="password">Password: </label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         name="password"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="confirm">Confirm Password:</label>
+                <div className="signup-field">
+                    <label htmlFor="confirm">Confirm Password: </label>
                     <input
                         type="password"
                         id="confirm"
                         value={passwordConf}
                         name="passwordConf"
                         onChange={handleChange}
+                        required
                     />
                 </div>
-                <div>
-                    <label htmlFor="isHost">Host:</label>
+                <div className="signup-field check">
+                    <label htmlFor="isHost">Renting Your Property? </label>
                     <input
                         type="checkbox"
                         id="isHost"
@@ -150,10 +136,10 @@ const SignupForm = (props) => {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <button disabled={isFormInvalid()}>Sign Up</button>
+                <div className="signup-buttons">
+                    <button disabled={isFormInvalid()} className="btn btn1">Sign Up</button>
                     <Link to="/">
-                        <button>Cancel</button>
+                        <button className="btn btn2">Cancel</button>
                     </Link>
                 </div>
             </form>
