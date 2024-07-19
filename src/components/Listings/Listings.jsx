@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Listings = ({ listings }) => {
     return (
         <main>
@@ -9,6 +11,7 @@ const Listings = ({ listings }) => {
                         <p>{listing.description}</p>
                         <p>Price: ${listing.price}</p>
                         <p>Location: {listing.location}</p>
+                        <Link to={`/listings/${listing._id}`}>View Details</Link>
                     </div>
                 ))
             ) : (
