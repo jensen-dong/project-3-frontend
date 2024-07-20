@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 
 const ListingDetail = () => {
@@ -38,6 +38,11 @@ const ListingDetail = () => {
             <p>Available Dates: {listing.availabile_dates.join(", ")}</p>
             <p>{listing.isBooked ? "Currently Booked" : "Available for Booking"}</p>
             <p>Owner: {listing.owner.username}</p>
+            {
+                !listing.isBooked && (
+                    <Link to={`/mybookings/new/${listing._id}`}>Book Now</Link>
+                )
+            }
         </main>
     );
 };

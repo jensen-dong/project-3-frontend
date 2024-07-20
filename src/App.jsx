@@ -10,6 +10,7 @@ import Listings from "./components/Listings/Listings";
 import ListingDetail from "./components/Listings/ListingDetail";
 import Bookings from "./components/Bookings/Bookings";
 import BookingForm from "./components/Bookings/BookingForm";
+import BookingDetail from "./components/Bookings/BookingDetais";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 
@@ -17,6 +18,8 @@ const App = () => {
     const [user, setUser] = useState(authService.getUser());
     const [listings, setListings] = useState([]);
     const [bookings, setBookings] = useState([]);
+
+    // console.log("listing", listings)
 
     const handleSignout = () => {
         authService.signout();
@@ -69,6 +72,7 @@ const App = () => {
                             path="/mybookings/new/:listingId"
                             element={<BookingForm addBooking={addBooking} />}
                         />
+                        <Route path="/bookings/:id" element={ <BookingDetail />}/>
                         {user.isHost && (
                             <>
                                 <Route path="/mylistings" /*element= ListingList.jsx */ />
