@@ -80,4 +80,20 @@ const updateProfile = async (formData) => {
     }
 }
 
-export { getAllListings, getAllBookings, getListingById, getProfile, updateProfile }
+const deleteProfile = async () => {
+    try {
+        const token = localStorage.getItem("token")
+        const res = await fetch(`${BACKEND_URL}/profiles`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export { getAllListings, getAllBookings, getListingById, getProfile, updateProfile, deleteProfile }
