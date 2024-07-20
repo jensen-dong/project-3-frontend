@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Search.css";
 
 const Search = ({ onSearch }) => {
     const [query, setQuery] = useState("");
@@ -28,8 +29,11 @@ const Search = ({ onSearch }) => {
                     value={query}
                     onChange={handleInputChange}
                 />
-                <button type="submit">Search</button>
+                <button type="submit" className="search-button">
+                    <img src="/images/search-icon.png" alt="" className="search-img"/>
+                </button>
             </form>
+            <hr />
         </>
     );
 };
