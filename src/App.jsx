@@ -13,13 +13,14 @@ import BookingForm from "./components/Bookings/BookingForm";
 import BookingDetail from "./components/Bookings/BookingDetais";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
+import ReviewForm from "./components/Review/ReviewForm";
 
 const App = () => {
     const [user, setUser] = useState(authService.getUser());
     const [listings, setListings] = useState([]);
     const [bookings, setBookings] = useState([]);
-
-    // console.log("listing", listings)
+    // const [reviews, setReviews] = useState([]);
+    //  console.log("reviews", reviews)
 
     const handleSignout = () => {
         authService.signout();
@@ -55,6 +56,9 @@ const App = () => {
         setBookings((prevBookings) => [...prevBookings, newBooking]);
     };
 
+   
+
+
     return (
         <>
             <NavBar user={user} handleSignout={handleSignout} />
@@ -73,6 +77,7 @@ const App = () => {
                             element={<BookingForm addBooking={addBooking} />}
                         />
                         <Route path="/bookings/:id" element={ <BookingDetail />}/>
+                        <Route path="/reviews/new/:listingId" element={ <ReviewForm/>}/>
                         {user.isHost && (
                             <>
                                 <Route path="/mylistings" /*element= ListingList.jsx */ />
