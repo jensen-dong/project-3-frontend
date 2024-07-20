@@ -142,15 +142,16 @@ const Profile = ({ setUser }) => {
       {profile.isHost && profile.listings && (
         <div>
           <h2>Your Listings</h2>
-          {profile.listings.map((listing) => (
-            <div key={listing._id}>
-              <h3>{listing.title}</h3>
-              <p>{listing.description}</p>
-              <p>Price: ${listing.price}</p>
-              <p>Location: {listing.location}</p>
-              {/* <Link to={`/listings/manage/${listing._id}`}>Edit Listing</Link> */}
-            </div>
-          ))}
+          {profile.isHost && (
+                <>
+                    <button>
+                        <Link to="/mylistings">Manage Listings</Link>
+                    </button>
+                    <button>
+                        <Link to="/listings/new">Rent Your Property</Link>
+                    </button>
+                </>
+            )}
         </div>
       )}
     </main>

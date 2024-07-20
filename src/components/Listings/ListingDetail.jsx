@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 
 const ListingDetail = () => {
     const { id } = useParams();
+    const navigate = useNavigate()
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         const fetchListing = async () => {
             try {
                 const data = await bnbService.getListingById(id);
+                console.log(data)
                 setListing(data);
             } catch (err) {
                 console.error(err);
@@ -19,7 +22,25 @@ const ListingDetail = () => {
             }
         };
         fetchListing();
+
+        const fetchUser = async () => {
+            try {
+                const userData = await bnbService.getProfile()
+                setUser(userData)
+            } catch (err) {
+                console.log("Error fetching user profile", err)
+            }
+        }
+        fetchUser()
     }, [id]);
+
+    const formatDateRange = (dates) => {
+        if (dates.length === 2) {
+            const [start, end] = dates.map(date => new Date(date).toISOString().split('T')[0]);
+            return `${start} to ${end}`;
+        }
+        return dates.map(date => new Date(date).toISOString().split('T')[0]).join(", ");
+    };
 
     if (loading) return <p>Loading...</p>;
     if (!listing) return <p>Listing not found.</p>;
@@ -35,9 +56,14 @@ const ListingDetail = () => {
                     <h3>Images Placeholder</h3>
                 </div>
             )}
-            <p>Available Dates: {listing.availabile_dates.join(", ")}</p>
+            <p>Available Dates: {formatDateRange(listing.available_dates)}</p>
             <p>{listing.isBooked ? "Currently Booked" : "Available for Booking"}</p>
             <p>Owner: {listing.owner.username}</p>
+            {user && user._id === listing.owner._id && (
+                <button onClick={() => navigate(`/listings/manage/${listing._id}`)}>
+                    Edit Listing
+                </button>
+            )}
         </main>
     );
 };
