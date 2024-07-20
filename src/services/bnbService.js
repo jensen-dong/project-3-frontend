@@ -3,97 +3,121 @@ const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
 const getAllListings = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}/listings`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         });
-        return res.json()
+        return res.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 };
 
 const getListingById = async (id) => {
     try {
         const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        return res.json()
+                "Content-Type": "application/json",
+            },
+        });
+        return res.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
-const getAllBookings = async() => {
+const getAllBookings = async () => {
     try {
+        const token = localStorage.getItem("token");
 
-        const token = localStorage.getItem("token")
-        
         const res = await fetch(`${BACKEND_URL}/bookings/mybookings`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
+                Authorization: `Bearer ${token}`,
+            },
         });
-        return res.json()
-
+        return res.json();
     } catch (error) {
-        console.log("error", error)
+        console.log("error", error);
     }
-}
+};
 
 const getProfile = async () => {
     try {
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token");
         const res = await fetch(`${BACKEND_URL}/profiles`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        return res.json()
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
 const updateProfile = async (formData) => {
     try {
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token");
         const res = await fetch(`${BACKEND_URL}/profiles`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(formData)
-        })
-        return res.json()
+            body: JSON.stringify(formData),
+        });
+        return res.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
 const deleteProfile = async () => {
     try {
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token");
         const res = await fetch(`${BACKEND_URL}/profiles`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        return res.json()
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
-export { getAllListings, getAllBookings, getListingById, getProfile, updateProfile, deleteProfile }
+const createBooking = async (formData) => {
+    try {
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(`${BACKEND_URL}/bookings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+        return res.json();
+    } catch (error) {
+        console.log("error", error);
+    }
+};
+
+export {
+    getAllListings,
+    getAllBookings,
+    getListingById,
+    getProfile,
+    updateProfile,
+    deleteProfile,
+    createBooking,
+};
