@@ -24,15 +24,29 @@ a {
 }
 
 .logo {
+    /* display: flex; */
+    position: relative;
+    top: -12px;
     margin: 0 20px;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
+}
+
+.logo img {
+    height: 45px;
+    margin-right: 2px;
+    position: relative;
+    top: 15px;
 }
 
 .icon {
     margin: 0 20px;
     cursor: pointer;
     position: relative;
+}
+
+.right {
+    margin-right: 10px;
 }
 
 .mid a,
