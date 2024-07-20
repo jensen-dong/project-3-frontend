@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Bookings = (props) => {
     return (
         <main>
@@ -8,6 +10,8 @@ const Bookings = (props) => {
                     return (
                         <div key={booking._id}>
                             <p>Name: {booking.name}</p>
+                           
+                            <Link to={`/bookings/${booking._id}`}>View Details</Link>
                         </div>
                     )
                 })

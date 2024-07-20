@@ -50,7 +50,7 @@ const ListingDetail = () => {
             <h1>{listing.title}</h1>
             <p>{listing.description}</p>
             <p>Price: ${listing.price}</p>
-            <p>Location: {listing.location}</p>
+            <p>Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
             {listing.images && listing.images.length > 0 && (
                 <div>
                     <h3>Images Placeholder</h3>
@@ -59,11 +59,18 @@ const ListingDetail = () => {
             <p>Available Dates: {formatDateRange(listing.available_dates)}</p>
             <p>{listing.isBooked ? "Currently Booked" : "Available for Booking"}</p>
             <p>Owner: {listing.owner.username}</p>
+
             {user && user._id === listing.owner._id && (
                 <button onClick={() => navigate(`/listings/manage/${listing._id}`)}>
                     Edit Listing
                 </button>
             )}
+            {user && user._id !== listing.owner._id && !listing.isBooked && (
+                <button onClick={() => navigate(`/mybookings/new/${listing._id}`)}>
+                    Book Now
+                </button>
+            )}
+
         </main>
     );
 };
