@@ -1,7 +1,7 @@
 # Waterbnb
 
 ## Screenshot/Logo
-<!-- ![Waterbnb Logo]*need to upload* -->
+![Waterbnb Logo](./public/images/main-logo.png)
 
 ## App Description
 Waterbnb is a web application designed to help users find and book unique getaways located near or on water bodies such as beaches, lakes, and rivers. Users can search for properties based on location, check availability, and book their preferred dates.
