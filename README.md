@@ -1,6 +1,4 @@
 # Waterbnb
-
-## Screenshot/Logo
 ![Waterbnb Logo](./public/images/main-logo.png)
 
 ## App Description
