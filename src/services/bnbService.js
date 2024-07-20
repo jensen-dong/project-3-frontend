@@ -45,6 +45,28 @@ const getAllBookings = async () => {
     }
 };
 
+const getBookingsById = async(id) => {
+
+    try {
+        if (!id) throw new Error('ID is required');
+        
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/bookings/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }
+      
+        });
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+       
+        return res.json()
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 const getProfile = async () => {
     try {
         const token = localStorage.getItem("token");
@@ -115,6 +137,7 @@ const createBooking = async (formData) => {
 export {
     getAllListings,
     getAllBookings,
+    getBookingsById,
     getListingById,
     getProfile,
     updateProfile,

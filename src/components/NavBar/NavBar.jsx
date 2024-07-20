@@ -20,9 +20,14 @@ const NavBar = ({ user, handleSignout }) => {
                     <Link to="/listings">Getaways</Link>
                 </li>
                 {user && (
+                    <>
                     <li className="mid">
                         <Link to="/mybookings">Your Bookings</Link>
                     </li>
+                    {/* <li className="mid">
+                        <Link to={`/mybookins/new/${listings.length > 0 ? listings[0]._id: ""}`}>Book Now</Link>
+                    </li> */}
+                    </>
                 )}
             </ul>
             <ul>
