@@ -10,7 +10,11 @@ const NewListing = () => {
     title: "",
     description: "",
     price: "",
-    location: "",
+    location: {
+      city: "",
+      state: "",
+      country: "",
+    },
     images: [],
     available_dates: [],
   });
@@ -27,7 +31,19 @@ const NewListing = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name.includes("location.")) {
+      const locField = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        location: {
+          ...prev.location,
+          [locField]: value,
+        },
+      }));
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleDateChange = (ranges) => {
@@ -84,11 +100,29 @@ const NewListing = () => {
           />
         </label>
         <label>
-          Location:
+          City:
           <input
             type="text"
-            name="location"
-            value={formData.location}
+            name="location.city"
+            value={formData.location.city}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          State:
+          <input
+            type="text"
+            name="location.state"
+            value={formData.location.state}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Country:
+          <input
+            type="text"
+            name="location.country"
+            value={formData.location.country}
             onChange={handleChange}
           />
         </label>
