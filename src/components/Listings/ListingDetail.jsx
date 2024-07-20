@@ -29,7 +29,7 @@ const ListingDetail = () => {
             <h1>{listing.title}</h1>
             <p>{listing.description}</p>
             <p>Price: ${listing.price}</p>
-            <p>Location: {listing.location}</p>
+            <p>Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
             {listing.images && listing.images.length > 0 && (
                 <div>
                     <h3>Images Placeholder</h3>

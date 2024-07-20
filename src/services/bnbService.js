@@ -45,27 +45,25 @@ const getAllBookings = async () => {
     }
 };
 
-const getBookingsById = async(id) => {
-
+const getBookingsById = async (id) => {
     try {
-        if (!id) throw new Error('ID is required');
-        
+        if (!id) throw new Error("ID is required");
+
         const token = localStorage.getItem("token");
         const res = await fetch(`${BACKEND_URL}/bookings/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-            }
-      
+            },
         });
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-       
-        return res.json()
+
+        return res.json();
     } catch (error) {
-        console.log("error", error)
+        console.log("error", error);
     }
-}
+};
 
 const getProfile = async () => {
     try {
@@ -134,24 +132,36 @@ const createBooking = async (formData) => {
     }
 };
 
-const createReview = async ( formData ) => {
+const createReview = async (formData) => {
     try {
-        
         const token = localStorage.getItem("token");
         const res = await fetch(`${BACKEND_URL}/reviews`, {
-            method : "POST",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(formData),
         });
-         return res.json();
-
+        return res.json();
     } catch (error) {
-        console.log("error", error)
+        console.log("error", error);
     }
-}
+};
+
+const searchListings = async (query) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}/listings/search?q=${query}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        return res.json();
+    } catch (error) {
+        console.log("error", error);
+    }
+};
 
 export {
     getAllListings,
@@ -162,5 +172,6 @@ export {
     updateProfile,
     deleteProfile,
     createBooking,
-    createReview
+    createReview,
+    searchListings,
 };

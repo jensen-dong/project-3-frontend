@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Landing from "./components/Landing/Landing";
-// import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import Profile from "./components/Profile/Profile";
@@ -10,10 +9,11 @@ import Listings from "./components/Listings/Listings";
 import ListingDetail from "./components/Listings/ListingDetail";
 import Bookings from "./components/Bookings/Bookings";
 import BookingForm from "./components/Bookings/BookingForm";
-import BookingDetail from "./components/Bookings/BookingDetais";
+import BookingDetail from "./components/Bookings/BookingDetails";
+import ReviewForm from "./components/Review/ReviewForm";
+import SearchResults from "./components/Search/SearchResults";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
-import ReviewForm from "./components/Review/ReviewForm";
 
 const App = () => {
     const [user, setUser] = useState(authService.getUser());
@@ -56,9 +56,6 @@ const App = () => {
         setBookings((prevBookings) => [...prevBookings, newBooking]);
     };
 
-   
-
-
     return (
         <>
             <NavBar user={user} handleSignout={handleSignout} />
@@ -68,6 +65,7 @@ const App = () => {
                 <Route path="/listings/:id" element={<ListingDetail />} />
                 <Route path="/signup" element={<SignupForm setUser={setUser} />} />
                 <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+                <Route path="/search" element={<SearchResults />} />
                 {user && (
                     <>
                         <Route path="/profile" element={<Profile setUser={setUser} />} />
@@ -76,8 +74,8 @@ const App = () => {
                             path="/mybookings/new/:listingId"
                             element={<BookingForm addBooking={addBooking} />}
                         />
-                        <Route path="/bookings/:id" element={ <BookingDetail />}/>
-                        <Route path="/reviews/new/:listingId" element={ <ReviewForm/>}/>
+                        <Route path="/bookings/:id" element={<BookingDetail />} />
+                        <Route path="/reviews/new/:listingId" element={<ReviewForm />} />
                         {user.isHost && (
                             <>
                                 <Route path="/mylistings" /*element= ListingList.jsx */ />

@@ -18,7 +18,7 @@ const BookingForm = ({ addBooking }) => {
         const fetchListingData = async () => {
             try {
                 const listing = await bnbService.getListingById(listingId);
-                setAvailableDates(listing.availabile_dates || []);
+                setAvailableDates(listing.available_dates || []);
             } catch (error) {
                 console.error("Failed to fetch listing data:", error);
             }
