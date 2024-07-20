@@ -5,6 +5,7 @@ import Landing from "./components/Landing/Landing";
 // import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
+import Profile from "./components/Profile/Profile"
 import Listings from "./components/Listings/Listings";
 import ListingDetail from "./components/Listings/ListingDetail";
 import Bookings from "./components/Bookings/Bookings";
@@ -57,7 +58,7 @@ const App = () => {
                 <Route path="/signin" element={<SigninForm setUser={setUser} />} />
                 {user && (
                     <>
-                        <Route path="/profile" /*element= Profile.jsx */ />
+                        <Route path="/profile" element={<Profile setUser={setUser} />} />
                         <Route path="/mybookings" element={<Bookings bookings={bookings} />} />
                         {user.isHost && (
                             <>
