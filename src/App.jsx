@@ -14,13 +14,14 @@ import BookingDetail from "./components/Bookings/BookingDetais";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 import ReviewForm from "./components/Review/ReviewForm";
+import Reviews from "./components/Review/Reviews"
 
 const App = () => {
     const [user, setUser] = useState(authService.getUser());
     const [listings, setListings] = useState([]);
     const [bookings, setBookings] = useState([]);
-    // const [reviews, setReviews] = useState([]);
-    //  console.log("reviews", reviews)
+    const [reviews, setReviews] = useState({});
+     console.log("reviews", reviews)
 
     const handleSignout = () => {
         authService.signout();
@@ -38,6 +39,31 @@ const App = () => {
         };
         fetchListings();
     }, []);
+  //   useEffect(() => {
+  //     const fetchListings = async () => {
+  //         try {
+  //             const allListings = await bnbService.getAllListings();
+  //             setListings(allListings);
+
+  //             // Fetch reviews for each listing
+  //             const reviewsPromises = allListings.map(listing => 
+  //                 bnbService.getReviewsByListingId(listing._id)
+  //             );
+
+  //             const reviewsArray = await Promise.all(reviewsPromises);
+  //             const reviewsMap = allListings.reduce((acc, listing, index) => {
+  //                 acc[listing._id] = reviewsArray[index];
+  //                 return acc;
+  //             }, {});
+
+  //             setReviews(reviewsMap);
+
+  //         } catch (err) {
+  //             console.log(err);
+  //         }
+  //     };
+  //     fetchListings();
+  // }, []);
 
     useEffect(() => {
         const fetchBookings = async () => {
@@ -55,8 +81,21 @@ const App = () => {
     const addBooking = (newBooking) => {
         setBookings((prevBookings) => [...prevBookings, newBooking]);
     };
+    
+  
+  const fetchAndUpdateReviews = async (listingId) => {
+    try {
+        const updatedReviews = await bnbService.getReviewsByListingId(listingId);
+        console.log("Fetched reviews:", updatedReviews); // Log to verify data
+        setReviews(prevReviews => ({
+            ...prevReviews,
+            [listingId]: updatedReviews 
+        }));
+    } catch (error) {
+        console.log("Error fetching reviews", error);
+    }
+};
 
-   
 
 
     return (
@@ -77,7 +116,8 @@ const App = () => {
                             element={<BookingForm addBooking={addBooking} />}
                         />
                         <Route path="/bookings/:id" element={ <BookingDetail />}/>
-                        <Route path="/reviews/new/:listingId" element={ <ReviewForm/>}/>
+                        <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
+                        <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
                         {user.isHost && (
                             <>
                                 <Route path="/mylistings" /*element= ListingList.jsx */ />
