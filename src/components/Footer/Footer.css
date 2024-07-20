@@ -1,0 +1,19 @@
+.footer {
+    background-color: #f7f7f7;
+    color: #0454bd;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer hr {
+    border-top: 1px;
+    border-color: #0454bd3f;
+    margin: 0;
+}
+
+.footer p {
+    margin: 8px 0 8px 0;
+    font-size: 12px;
+}
