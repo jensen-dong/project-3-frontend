@@ -69,6 +69,7 @@ const App = () => {
         <Route path="/listings/:id" element={<ListingDetail />} />
         <Route path="/signup" element={<SignupForm setUser={setUser} />} />
         <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+        <Route path="/search" element={<SearchResults />} />
         {user && (
           <>
             <Route path="/profile" element={<Profile setUser={setUser} />} />

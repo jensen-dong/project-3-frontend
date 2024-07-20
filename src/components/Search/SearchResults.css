@@ -1,0 +1,12 @@
+.search-results {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.search-results h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
