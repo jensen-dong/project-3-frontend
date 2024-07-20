@@ -63,6 +63,17 @@ const createListing = async (formData) => {
     }
 }
 
+const deleteListing = async (id) => {
+    const token = localStorage.getItem("token");
+    const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return res.json();
+};
+
 
 const getAllBookings = async() => {
 
@@ -208,6 +219,7 @@ export {
     getListingById,
     updateListing,
     createListing,
+    deleteListing,
     getProfile,
     updateProfile,
     deleteProfile,
