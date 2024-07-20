@@ -6,7 +6,13 @@ const NavBar = ({ user, handleSignout }) => {
         <nav>
             <ul>
                 <li className="logo">
-                    <Link to="/">waterbnb</Link>
+                    <Link to="/">
+                        <img
+                            src="/images/waterbnb-logo-blue.png"
+                            alt="waterbnb-logo"
+                        />
+                        waterbnb
+                    </Link>
                 </li>
             </ul>
             <ul>
