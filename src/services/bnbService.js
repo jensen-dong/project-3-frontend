@@ -47,4 +47,53 @@ const getAllBookings = async() => {
     }
 }
 
-export { getAllListings, getAllBookings, getListingById }
+const getProfile = async () => {
+    try {
+        const token = localStorage.getItem("token")
+        const res = await fetch(`${BACKEND_URL}/profiles`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const updateProfile = async (formData) => {
+    try {
+        const token = localStorage.getItem("token")
+        const res = await fetch(`${BACKEND_URL}/profiles`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(formData)
+        })
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const deleteProfile = async () => {
+    try {
+        const token = localStorage.getItem("token")
+        const res = await fetch(`${BACKEND_URL}/profiles`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export { getAllListings, getAllBookings, getListingById, getProfile, updateProfile, deleteProfile }
