@@ -1,8 +1,33 @@
-# React + Vite
+# Waterbnb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Screenshot/Logo
+<!-- ![Waterbnb Logo]*need to upload* -->
 
-Currently, two official plugins are available:
+## App Description
+Waterbnb is a web application designed to help users find and book unique getaways located near or on water bodies such as beaches, lakes, and rivers. Users can search for properties based on location, check availability, and book their preferred dates.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
+### Deployed App
+<!-- Check it out live!: [Waterbnb] -->
+
+### Back-End Repository
+Visit our back-end repository: [Waterbnb Backend](link-to-backend-repo)
+
+## Attributions
+
+
+## Technologies Used
+- JavaScript
+- React
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- CSS
+- HTML
+
+## Next Steps
+Planned future enhancements:
+- Add filtering options for search results based on price range, property type, and amenities.
+- Introduce a messaging feature for guests and hosts to communicate directly within the platform.
+
