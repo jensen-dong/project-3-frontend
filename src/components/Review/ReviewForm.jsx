@@ -2,14 +2,15 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 
-const ReviewForm = () => {
+const ReviewForm = ({fetchAndUpdateReviews}) => {
 
     const { listingId } = useParams();
     console.log("listingId", listingId)
     const navigate = useNavigate();
     const [ formData, setFormData ] = useState({
         content: "",
-        rating: '1'
+        rating: '1',
+        listingId,
     });
 
    const [ error, setError] = useState(null);
@@ -29,7 +30,7 @@ const ReviewForm = () => {
         const data = await bnbService.createReview(formData);
         if(data) {
             alert("Review Successfully created!");
-            // addReviews(data);
+             fetchAndUpdateReviews(listingId);
             navigate(`/listings/${listingId}`)
         } else {
             alert(data.error);

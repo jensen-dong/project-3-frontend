@@ -201,6 +201,26 @@ const searchListings = async (query) => {
     }
 };
 
+const getReviewsByListingId = async(listingId) => {
+    try {
+        
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/reviews/find/${listingId}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!res.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return res.json();
+
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 export {
     getAllListings,
     getAllBookings,
@@ -213,6 +233,7 @@ export {
     deleteProfile,
     createBooking,
     createReview,
-    searchListings,
+    getReviewsByListingId,
+    searchListings
 };
 
