@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./SearchResults.css";
 
 const SearchResults = () => {
     const location = useLocation();
@@ -13,7 +14,7 @@ const SearchResults = () => {
     }, [location.state]);
 
     return (
-        <main>
+        <main className="search-results">
             <h1>Search Results</h1>
             {listings.length ? (
                 listings.map((listing) => (

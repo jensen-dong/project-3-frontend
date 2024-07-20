@@ -34,7 +34,7 @@ const NavBar = ({ user, handleSignout }) => {
                 {user ? (
                     <li className="icon">
                         <img
-                            src="https://cdn3.iconfinder.com/data/icons/ui-basic-28/32/UI_App_Mobile_Interface_Website_Design_Profile_copy-512.png"
+                            src="/images/profile-icon.png"
                             alt="Profile"
                             height="25px"
                         />
