@@ -134,6 +134,25 @@ const createBooking = async (formData) => {
     }
 };
 
+const createReview = async ( formData ) => {
+    try {
+        
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/reviews`, {
+            method : "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+         return res.json();
+
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 export {
     getAllListings,
     getAllBookings,
@@ -143,4 +162,5 @@ export {
     updateProfile,
     deleteProfile,
     createBooking,
+    createReview
 };

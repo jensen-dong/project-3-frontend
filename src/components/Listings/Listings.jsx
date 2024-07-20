@@ -12,6 +12,7 @@ const Listings = ({ listings }) => {
                         <p>Price: ${listing.price}</p>
                         <p>Location: {listing.location}</p>
                         <Link to={`/listings/${listing._id}`}>View Details</Link>
+                        <Link to={`/reviews/new/${listing._id}`}> Add Review</Link>
                     </div>
                 ))
             ) : (
