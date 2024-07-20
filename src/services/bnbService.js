@@ -28,7 +28,44 @@ const getListingById = async (id) => {
     }
 };
 
-const getAllBookings = async () => {
+
+const updateListing = async (id, formData) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+const createListing = async (formData) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/listings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+const getAllBookings = async() => {
+
     try {
         const token = localStorage.getItem("token");
 
@@ -114,6 +151,7 @@ const deleteProfile = async () => {
     }
 };
 
+
 const createBooking = async (formData) => {
     try {
         const token = localStorage.getItem("token");
@@ -168,6 +206,8 @@ export {
     getAllBookings,
     getBookingsById,
     getListingById,
+    updateListing,
+    createListing,
     getProfile,
     updateProfile,
     deleteProfile,
@@ -175,3 +215,4 @@ export {
     createReview,
     searchListings,
 };
+
