@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './listingCard.css'
 
 
+
 const Listings = ({ listings }) => {
     const [randomImages, setRandomImages] = useState({})
 
@@ -48,6 +49,8 @@ const Listings = ({ listings }) => {
                             <p>Available Dates: {formatDateRange(listing.available_dates)}</p>
                             <p>{listing.isBooked ? "Currently Booked" : "Available for Booking"}</p>
                             <Link className="button" to={`/listings/${listing._id}`}>View Details</Link>
+                            <Link to={`/reviews/new/${listing._id}`}  > Add Review</Link>
+                            <Link to={`/reviews/find/${listing._id}`}> View Reviews</Link>
                         </div>
                     ))
                 ) : (
