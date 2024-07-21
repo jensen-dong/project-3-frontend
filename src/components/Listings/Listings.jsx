@@ -24,13 +24,13 @@ const Listings = ({ listings }) => {
                         <h2>{listing.title}</h2>
                         <p>{listing.description}</p>
                         <p>Price: ${listing.price}</p>
-                        <p>Location: {listing.location}</p>
+                        <p>Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
                         <Link to={`/listings/${listing._id}`}>View Details</Link>
                         <Link to={`/reviews/new/${listing._id}`}  > Add Review</Link>
                         <Link to={`/reviews/find/${listing._id}`}> View Reviews</Link>
                     </div>
                 ))
-            ) : (
+            ) : ( 
                 <p>No listings available.</p>
             )}
         </main>
