@@ -1,18 +1,12 @@
 
 import { useParams } from "react-router-dom";
 
-
-
-
 const Reviews = ({ reviews }) => {
 
     const { id } = useParams();
+    console.log("id", id)
     const listingReviews = reviews[id] || []; 
     
- 
-
-
-
     return(
         <main>
             {

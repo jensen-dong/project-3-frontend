@@ -10,6 +10,7 @@ const ListingDetail = () => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [randomImage, setRandomImage] = useState(null);
+    
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -24,6 +25,7 @@ const ListingDetail = () => {
             }
         };
         fetchListing();
+        
 
         const fetchUser = async () => {
             try {
@@ -42,6 +44,7 @@ const ListingDetail = () => {
         fetchRandomImage()
     }, [id]);
 
+    
     const formatDateRange = (dates) => {
         if (dates.length === 2) {
             const [start, end] = dates.map(date => new Date(date).toISOString().split('T')[0]);

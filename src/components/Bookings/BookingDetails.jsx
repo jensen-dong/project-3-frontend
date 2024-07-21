@@ -43,6 +43,8 @@ const BookingDetail = () => {
             <p>Username: {booking.user.username}</p>
             <p>Email: {booking.user.email}</p>
         </main>
+
+       
     )
 
 };

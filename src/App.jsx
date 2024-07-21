@@ -24,6 +24,7 @@ const App = () => {
     const [listings, setListings] = useState([]);
     const [bookings, setBookings] = useState([]);
     const [reviews, setReviews] = useState({});
+  
      console.log("reviews", reviews)
 
 
@@ -43,32 +44,30 @@ const App = () => {
     };
     fetchListings();
   }, []);
-  //   useEffect(() => {
-  //     const fetchListings = async () => {
-  //         try {
-  //             const allListings = await bnbService.getAllListings();
-  //             setListings(allListings);
+ 
+  //so reviews can be seen even after refreshing the browser
+  useEffect(() => { 
 
-  //             // Fetch reviews for each listing
-  //             const reviewsPromises = allListings.map(listing => 
-  //                 bnbService.getReviewsByListingId(listing._id)
-  //             );
-
-  //             const reviewsArray = await Promise.all(reviewsPromises);
-  //             const reviewsMap = allListings.reduce((acc, listing, index) => {
-  //                 acc[listing._id] = reviewsArray[index];
-  //                 return acc;
-  //             }, {});
-
-  //             setReviews(reviewsMap);
-
-  //         } catch (err) {
-  //             console.log(err);
-  //         }
-  //     };
-  //     fetchListings();
-  // }, []);
-
+    const fetchListingAndReviews = async() => {
+      try {
+        const allListings  = await bnbService.getAllListings();
+        setListings(allListings);
+  
+        const reviewsMap = {};
+  
+        for ( const listing of allListings) {
+          const reviews = await bnbService.getReviewsByListingId(listing._id);
+          reviewsMap[listing._id] = reviews
+        }
+        setReviews(reviewsMap)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchListingAndReviews()
+  
+  }, [])
+  
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -90,7 +89,7 @@ const App = () => {
   const fetchAndUpdateReviews = async (listingId) => {
     try {
         const updatedReviews = await bnbService.getReviewsByListingId(listingId);
-        console.log("Fetched reviews:", updatedReviews); // Log to verify data
+        console.log("Fetched reviews:", updatedReviews); 
         setReviews(prevReviews => ({
             ...prevReviews,
             [listingId]: updatedReviews 
@@ -99,7 +98,6 @@ const App = () => {
         console.log("Error fetching reviews", error);
     }
 };
-
 
 
   
