@@ -115,10 +115,12 @@ const App = () => {
         {user && (
           <>
             <Route path="/profile" element={<Profile setUser={setUser} />} />
-            <Route
-              path="/mybookings"
-              element={<Bookings bookings={bookings} />}
-            />
+            <Route path="/mybookings" element={<Bookings bookings={bookings} />}/>
+            <Route path="/mybookings/new/:listingId" element={<BookingForm addBooking={addBooking} />}/>
+            
+            <Route path="/bookings/:id" element={ <BookingDetail />}/>
+                        <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
+                        <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
             {user.isHost && (
               <>
                 <Route
