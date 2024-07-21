@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import './listingCard.css'
 
+
 const Listings = ({ listings }) => {
     const [randomImages, setRandomImages] = useState({})
 

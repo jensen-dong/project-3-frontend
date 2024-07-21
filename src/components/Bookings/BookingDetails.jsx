@@ -41,7 +41,7 @@ const BookingDetail = () => {
                 </div>
             )}
             <h3>User Details</h3>
-            <p>USername: {booking.user.username}</p>
+            <p>Username: {booking.user.username}</p>
             <p>Email: {booking.user.email}</p>
         </main>
     )
