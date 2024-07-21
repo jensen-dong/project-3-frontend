@@ -12,7 +12,6 @@ const BookingDetail = () => {
         const fetchBookings = async() => {
             try {
                 const data = await bnbService.getBookingsById(id);
-                console.log("data",data);
                 setBooking(data);
             } catch (error) {
                 console.log("error", error)
@@ -34,7 +33,7 @@ const BookingDetail = () => {
             <p>Title: {booking.listing.title}</p>
             <p>Description: {booking.listing.description}</p>
             <p>Price: {booking.listing.price}</p>
-            <p>Location:{booking.listing.location}</p>
+            <p>Location:{booking.listing.location.city}, {booking.listing.location.state}, {booking.listing.location.country}</p>
             {booking.listing.images && booking.listing.images.length > 0 && (
                 <div>
                     <h3>Images Placeholder</h3>
