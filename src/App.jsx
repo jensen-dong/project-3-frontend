@@ -16,7 +16,7 @@ import SearchResults from "./components/Search/SearchResults";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 import ReviewForm from "./components/Review/ReviewForm";
-import Reviews from "./components/Review/Reviews"
+import Reviews from "./components/Review/Reviews"; 
 
 const App = () => {
 
@@ -44,73 +44,35 @@ const App = () => {
     fetchListings();
   }, []);
 
-    useEffect(() => {
-        const fetchListings = async () => {
-            try {
-                const allListings = await bnbService.getAllListings();
-                setListings(allListings);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchListings();
-    }, []);
-  //   useEffect(() => {
-  //     const fetchListings = async () => {
-  //         try {
-  //             const allListings = await bnbService.getAllListings();
-  //             setListings(allListings);
-
-  //             // Fetch reviews for each listing
-  //             const reviewsPromises = allListings.map(listing => 
-  //                 bnbService.getReviewsByListingId(listing._id)
-  //             );
-
-  //             const reviewsArray = await Promise.all(reviewsPromises);
-  //             const reviewsMap = allListings.reduce((acc, listing, index) => {
-  //                 acc[listing._id] = reviewsArray[index];
-  //                 return acc;
-  //             }, {});
-
-  //             setReviews(reviewsMap);
-
-  //         } catch (err) {
-  //             console.log(err);
-  //         }
-  //     };
-  //     fetchListings();
-  // }, []);
-
-    useEffect(() => {
-        const fetchBookings = async () => {
-            try {
-                const getAllBookings = await bnbService.getAllBookings();
-                console.log("booking", getAllBookings);
-                setBookings(getAllBookings);
-            } catch (error) {
-                console.log("error", error);
-            }
-        };
-        fetchBookings();
-    }, []);
-
-    const addBooking = (newBooking) => {
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const getAllBookings = await bnbService.getAllBookings();
+        console.log("booking", getAllBookings);
+        setBookings(getAllBookings);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchBookings();
+  }, []);
+  
+  const addBooking = (newBooking) => {
         setBookings((prevBookings) => [...prevBookings, newBooking]);
     };
-    
-  
+
   const fetchAndUpdateReviews = async (listingId) => {
     try {
-        const updatedReviews = await bnbService.getReviewsByListingId(listingId);
-        console.log("Fetched reviews:", updatedReviews); // Log to verify data
-        setReviews(prevReviews => ({
-            ...prevReviews,
-            [listingId]: updatedReviews 
-        }));
+      const updatedReviews = await bnbService.getReviewsByListingId(listingId);
+      console.log("Fetched reviews:", updatedReviews); // Log to verify data
+      setReviews((prevReviews) => ({
+        ...prevReviews,
+        [listingId]: updatedReviews,
+      }));
     } catch (error) {
-        console.log("Error fetching reviews", error);
+      console.log("Error fetching reviews", error);
     }
-};
+  };
 
   return (
     <>
@@ -160,7 +122,6 @@ const App = () => {
       </Routes>
     </>
   );
-
 };
 
 export default App;

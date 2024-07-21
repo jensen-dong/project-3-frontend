@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
+import './listingCard.css'
 
 const ListingDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate()
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
+    const [randomImage, setRandomImage] = useState(null);
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -32,6 +34,12 @@ const ListingDetail = () => {
             }
         }
         fetchUser()
+
+        const fetchRandomImage = async () => {
+            const response = await fetch('https://picsum.photos/200')
+            setRandomImage(response.url)
+        }
+        fetchRandomImage()
     }, [id]);
 
     const formatDateRange = (dates) => {
@@ -47,30 +55,31 @@ const ListingDetail = () => {
 
     return (
         <main>
+            <div className="card">
             <h1>{listing.title}</h1>
             <p>{listing.description}</p>
-            <p>Price: ${listing.price}</p>
-            <p>Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
-            {listing.images && listing.images.length > 0 && (
-                <div>
-                    <h3>Images Placeholder</h3>
-                </div>
-            )}
+            <p className="price">Price: ${listing.price}</p>
+            <p className="location">Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
+            {randomImage ? (
+                    <img src={randomImage} alt={listing.title} />
+                ) : (
+                    <div style={{ width: '200px', height: '200px', backgroundColor: '#f0f0f0' }}></div>
+                )}
             <p>Available Dates: {formatDateRange(listing.available_dates)}</p>
             <p>{listing.isBooked ? "Currently Booked" : "Available for Booking"}</p>
             <p>Owner: {listing.owner.username}</p>
 
             {user && user._id === listing.owner._id && (
-                <button onClick={() => navigate(`/listings/manage/${listing._id}`)}>
+                <button className="button" onClick={() => navigate(`/listings/manage/${listing._id}`)}>
                     Edit Listing
                 </button>
             )}
             {user && user._id !== listing.owner._id && !listing.isBooked && (
-                <button onClick={() => navigate(`/mybookings/new/${listing._id}`)}>
+                <button className="button" onClick={() => navigate(`/mybookings/new/${listing._id}`)}>
                     Book Now
                 </button>
             )}
-
+            </div>
         </main>
     );
 };

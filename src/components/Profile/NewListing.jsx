@@ -33,12 +33,12 @@ const NewListing = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name.includes("location.")) {
-      const locField = name.split(".")[1];
+      const locationKey = name.split(".")[1];
       setFormData((prev) => ({
         ...prev,
         location: {
           ...prev.location,
-          [locField]: value,
+          [locationKey]: value,
         },
       }));
     } else {
