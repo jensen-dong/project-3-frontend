@@ -100,6 +100,21 @@ const ManageListing = () => {
     }
   };
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Please confirm to delete this listing"
+    );
+    if (confirmDelete) {
+      try {
+        await bnbService.deleteListing(id);
+        setMessage("It's gone!");
+        navigate("/mylistings");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   if (!listing) return <p>Loading...</p>;
 
   return (
@@ -169,6 +184,12 @@ const ManageListing = () => {
           />
         </label>
         <button type="submit">Update Listing</button>
+        <button
+          type="button"
+          onClick={handleDelete}
+        >
+          Delete Listing
+        </button>
       </form>
       {message && <p>{message}</p>}
     </main>

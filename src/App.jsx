@@ -12,11 +12,11 @@ import NewListing from "./components/Profile/NewListing";
 import Bookings from "./components/Bookings/Bookings";
 import BookingForm from "./components/Bookings/BookingForm";
 import BookingDetail from "./components/Bookings/BookingDetails";
-import ReviewForm from "./components/Review/ReviewForm";
 import SearchResults from "./components/Search/SearchResults";
 import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
-import Reviews from "./components/Review/Reviews"
+import ReviewForm from "./components/Review/ReviewForm";
+import Reviews from "./components/Review/Reviews"; 
 
 const App = () => {
 
@@ -102,6 +102,8 @@ const App = () => {
 
 
 
+  
+
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -115,10 +117,15 @@ const App = () => {
         {user && (
           <>
             <Route path="/profile" element={<Profile setUser={setUser} />} />
-            <Route path="/mybookings" element={<Bookings bookings={bookings} />}/>
-            <Route path="/mybookings/new/:listingId" element={<BookingForm addBooking={addBooking} />}/>
-            
-            <Route path="/bookings/:id" element={ <BookingDetail />}/>
+            <Route
+              path="/mybookings"
+              element={<Bookings bookings={bookings} />}
+            />
+            <Route
+                            path="/mybookings/new/:listingId"
+                            element={<BookingForm addBooking={addBooking} />}
+                        />
+                        <Route path="/bookings/:id" element={ <BookingDetail />}/>
                         <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
                         <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
             {user.isHost && (
@@ -145,7 +152,6 @@ const App = () => {
       </Routes>
     </>
   );
-
 };
 
 export default App;
