@@ -1,6 +1,20 @@
 import { Link } from "react-router-dom";
 
+
 const Listings = ({ listings }) => {
+    // const [reviews, setReviews] = useState([]);
+
+    // const fetchAndUpdateReviews = async (listingId) => {
+    //     try {
+    //         const updatedReviews = await bnbService.getReviewsByListingId(listingId);
+    //         setReviews((prevReviews) => ({
+    //             ...prevReviews,
+    //             [listingId]: updatedReviews,
+    //         }));
+    //     } catch (error) {
+    //         console.log("Error fetching reviews", error);
+    //     }
+    // };
     return (
         <main>
             <h1>Listings</h1>
@@ -12,7 +26,8 @@ const Listings = ({ listings }) => {
                         <p>Price: ${listing.price}</p>
                         <p>Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
                         <Link to={`/listings/${listing._id}`}>View Details</Link>
-                        <Link to={`/reviews/new/${listing._id}`}> Add Review</Link>
+                        <Link to={`/reviews/new/${listing._id}`}  > Add Review</Link>
+                        <Link to={`/reviews/find/${listing._id}`}> View Reviews</Link>
                     </div>
                 ))
             ) : ( 
