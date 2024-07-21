@@ -44,7 +44,7 @@ const Listings = ({ listings }) => {
                             )}
                             <h2>{listing.title}</h2>
                             <p>{listing.description}</p>
-                            <p className="price">Price: ${listing.price}</p>
+                            <p className="price">Price: ${listing.price}/night</p>
                             <p className="location">Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
                             <p>Available Dates: {formatDateRange(listing.available_dates)}</p>
                             <p>{listing.isBooked ? "Currently Booked" : "Available for Booking"}</p>

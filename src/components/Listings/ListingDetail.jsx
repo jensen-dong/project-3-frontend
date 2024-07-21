@@ -3,19 +3,20 @@ import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import './listingCard.css'
 
-const ListingDetail = () => {
+const ListingDetail = ({ listingId }) => {
     const { id } = useParams();
     const navigate = useNavigate()
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [randomImage, setRandomImage] = useState(null);
+    const Id = listingId || id;
     
 
     useEffect(() => {
         const fetchListing = async () => {
             try {
-                const data = await bnbService.getListingById(id);
+                const data = await bnbService.getListingById(Id);
                 console.log(data)
                 setListing(data);
             } catch (err) {
@@ -42,7 +43,7 @@ const ListingDetail = () => {
             setRandomImage(response.url)
         }
         fetchRandomImage()
-    }, [id]);
+    }, [Id]);
 
     
     const formatDateRange = (dates) => {
@@ -57,11 +58,11 @@ const ListingDetail = () => {
     if (!listing) return <p>Listing not found.</p>;
 
     return (
-        <main>
+        <main className="listing-details-main">
             <div className="card">
             <h1>{listing.title}</h1>
             <p>{listing.description}</p>
-            <p className="price">Price: ${listing.price}</p>
+            <p className="price">Price: ${listing.price}/night</p>
             <p className="location">Location: {listing.location.city}, {listing.location.state}, {listing.location.country}</p>
             {randomImage ? (
                     <img src={randomImage} alt={listing.title} />
