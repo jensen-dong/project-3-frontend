@@ -76,3 +76,9 @@
 .btn2:hover {
     background-color: hsl(214, 96%, 90%);
 }
+
+.listing-details-main {
+    position: relative;
+    left: 20px;
+    top: 5px;
+}
