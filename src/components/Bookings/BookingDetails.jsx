@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import "./BookingDetails.css";
+import { Link } from "react-router-dom";
 
 const BookingDetail = () => {
     const { id } = useParams();
@@ -62,11 +63,12 @@ const BookingDetail = () => {
                         {booking.listing.location.country}
                     </p>
                 </div>
+               
             </div>
             <button className="btn btn1" onClick={() => navigate("/mybookings")}>
                 Back to Your Bookings
             </button>
-           
+            <Link to={`/bookings/edit/${booking._id}`}>Edit</Link>
         </main>
     );
 };
