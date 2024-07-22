@@ -1,0 +1,83 @@
+.your-reviews {
+    text-align: center;
+}
+
+.review-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.review-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 16px;
+    width: 300px;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.review-content {
+    line-height: 1.9;
+}
+
+.review-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+   
+}
+
+.buttonReview{
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    
+}
+
+.buttonReview-edit {
+    background-color: #2e76d3;
+    color: #f7f7f7;
+}
+
+.buttonReview-delete {
+    background-color: #2e76d3;
+    color: #f7f7f7;
+}
+
+.buttonReview-edit:hover {
+    background-color: #023e8a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.buttonReview-delete:hover {
+    background-color: #023e8a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.goButton {
+    display:  block;
+    width: 120px;
+    margin: 0 auto;
+   font-size: 16px;
+   cursor: pointer;
+   background-color: #2e76d3;
+   border-radius: 4px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+   color: #f7f7f7;
+   border: none;
+   padding: 15px;
+   text-align: center;
+   margin-top: 10px;
+}
+
+.goButton:hover {
+    background-color: #023e8a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
