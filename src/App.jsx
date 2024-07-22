@@ -129,6 +129,7 @@ const App = () => {
                         <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
                         <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
                         <Route path="/reviews/edit/:id" element={ <EditReviewForm/>}/>
+                        
             {user.isHost && (
               <>
                 <Route
