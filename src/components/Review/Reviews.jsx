@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
  import * as bnbService from '../../services/bnbService';
- 
+ import "./ViewReview.css"
 
 const Reviews = () => {
 
@@ -49,30 +49,44 @@ const Reviews = () => {
         navigate(`/listings/${id}`)
     }
 
+    const handleClick = (reviewId) => {
+        navigate(`/reviews/edit/${reviewId}`)
+    }
+
     if (loading) return <p>Loading...</p>;
 
     return(
         <main>
+                <h1 className="your-reviews">Your Reviews</h1>
+<div className="review-container">
             {
                 reviews .length ? (
                     reviews .map((review) => {
+                        
                         return(
-                            <div key={review._id}>
+                           
+                            <div key={review._id} className="review-card">
+                                <div className="review-content">
                                 <p>Content: {review.content}</p>
                                 <p>Rating: {review.rating}</p>
-                                <Link to={`/reviews/edit/${review._id}`}>Edit</Link>
-                                {/* <Link to={`/reviews/delete/${review._id}`}> Delete</Link> */}
-                                <button onClick={ () => handleDelete(review._id)}>Delete Review</button>
+                                </div>
+                                <div className="review-actions">
+                                
+                                <button onClick={() => handleClick(review._id)} className="buttonReview buttonReview-edit">Edit Review</button>
+                               
+                                <button onClick={ () => handleDelete(review._id)} className="buttonReview buttonReview-delete">Delete Review</button>
                                 
                             </div>
-                            
+                            </div>
                         )
                     })
                 ): (
                     <p>No Reviews Yet</p>
                 )
             }
-             <button onClick= {goTolistingId}>Go Back</button>
+             
+             </div>
+             <button onClick= {goTolistingId} className="goButton">Go Back</button>
         </main>
     )
 };
