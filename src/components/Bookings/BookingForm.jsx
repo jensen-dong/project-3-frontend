@@ -109,7 +109,7 @@ const BookingForm = ({ addBooking }) => {
                     <button type="submit" disabled={isFormInvalid()} className="btn btn1">
                         Book Now
                     </button>
-                    <button type="button" className="btn btn2">
+                    <button type="button" className="btn btn2 cancel">
                         Cancel
                     </button>
                 </div>
