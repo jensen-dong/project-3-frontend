@@ -19,6 +19,7 @@ import ReviewForm from "./components/Review/ReviewForm";
 import Reviews from "./components/Review/Reviews"; 
 import Footer from "./components/Footer/Footer";
 import EditReviewForm from "./components/Review/EditReviewForm";
+import EditBookingForm from "./components/Bookings/EditBookingForm";
 
 const App = () => {
 
@@ -110,7 +111,14 @@ const updateListing = async() => {
   }
 }
 
-
+const updateBookings = async() => {
+  try {
+    const updateBooking = await bnbService.getAllBookings();
+    setBookings(updateBooking)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -133,6 +141,7 @@ const updateListing = async() => {
                             element={<BookingForm addBooking={addBooking} />}
                         />
                         <Route path="/bookings/:id" element={ <BookingDetail />}/>
+                        <Route path="/bookings/edit/:id" element={ <EditBookingForm updateBookings={updateBookings}/>}/>
                         <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
                         <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
                         <Route path="/reviews/edit/:id" element={ <EditReviewForm/>}/>

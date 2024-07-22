@@ -114,6 +114,25 @@ const getBookingsById = async (id) => {
     }
 };
 
+const updateBooking = async(id, formData) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/bookings/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+        return res.json();
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 const deleteBooking = async(id) => {
     try {
         const token = localStorage.getItem("token");
@@ -329,6 +348,7 @@ export {
     updateReview,
     getReviewsById,
     deleteReview,
-    deleteBooking
+    deleteBooking,
+    updateBooking
 };
 
