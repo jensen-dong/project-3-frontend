@@ -23,12 +23,14 @@ const ReviewForm = ({fetchAndUpdateReviews}) => {
    const handleSubmit = async(e) => {
     e.preventDefault();
     if(formData.rating < 1 || formData.rating > 5) {
+        
         setError("Please provide rating between 1 and 5")
+       return;
     }
 
     try {
         const data = await bnbService.createReview(formData);
-        if(data) {
+        if(data ) {
             alert("Review Successfully created!");
              fetchAndUpdateReviews(listingId);
             navigate(`/listings/${listingId}`)
@@ -37,12 +39,13 @@ const ReviewForm = ({fetchAndUpdateReviews}) => {
         }
        } catch (error) {
         console.log("error", error)
+        setError("An error occured while creating the review")
        }
     
    };
 
    const isFormInValid = () => {
-    return !(formData.content && formData.rating)
+    return !(formData.content )
    }
   
    return(

@@ -11,7 +11,6 @@ const Landing = ({ listings }) => {
     return (
         <main>
             <Search onSearch={handleSearch} />
-            <h1>LANDING/HOMEPAGE</h1>
             <h3>
                 View listings, search bar/fields, listings sections with different scenery/areas?
             </h3>

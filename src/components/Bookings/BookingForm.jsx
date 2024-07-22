@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
+import ListingDetail from "../Listings/ListingDetail";
 import "./BookingForm.css";
 
 const BookingForm = ({ addBooking }) => {
@@ -17,8 +18,8 @@ const BookingForm = ({ addBooking }) => {
     useEffect(() => {
         const fetchListingData = async () => {
             try {
-                const listing = await bnbService.getListingById(listingId);
-                setAvailableDates(listing.available_dates || []);
+                const fetchedListing = await bnbService.getListingById(listingId);
+                setAvailableDates(fetchedListing.available_dates || []);
             } catch (error) {
                 console.error("Failed to fetch listing data:", error);
             }
@@ -61,7 +62,6 @@ const BookingForm = ({ addBooking }) => {
 
         return availableDates.some((date) => {
             const availableDate = new Date(date).toISOString().split("T")[0];
-            // console.log("available dates:", availableDate);
             return availableDate >= start && availableDate <= end;
         });
     };
@@ -109,11 +109,12 @@ const BookingForm = ({ addBooking }) => {
                     <button type="submit" disabled={isFormInvalid()} className="btn btn1">
                         Book Now
                     </button>
-                    <button type="button" className="btn btn2">
+                    <button type="button" className="btn btn2 cancel">
                         Cancel
                     </button>
                 </div>
             </form>
+            <ListingDetail listingId={listingId} />
         </main>
     );
 };

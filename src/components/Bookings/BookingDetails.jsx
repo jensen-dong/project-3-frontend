@@ -1,52 +1,71 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
+import "./BookingDetails.css";
 
 const BookingDetail = () => {
-    const {id} = useParams();
-    // console.log('Booking ID:', id);
-    const [ booking, setBooking ] = useState(null);
-    const [ loading, setLoading ] = useState(true);
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [booking, setBooking] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [randomImage, setRandomImage] = useState(null);
 
     useEffect(() => {
-        const fetchBookings = async() => {
+        const fetchBookings = async () => {
             try {
                 const data = await bnbService.getBookingsById(id);
-                console.log("data",data);
                 setBooking(data);
+                const images = await bnbService.apiImages();
+                const randomIndex = Math.floor(Math.random() * images.length);
+                setRandomImage(images[randomIndex]);
             } catch (error) {
-                console.log("error", error)
-            }finally {
-                setLoading(false)
+                console.log("error", error);
+            } finally {
+                setLoading(false);
             }
         };
-        fetchBookings()
+        fetchBookings();
     }, [id]);
 
-    if(loading) return <p>Loading...</p>
-    if(!booking) return <p> Booking not found</p>
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        const date = new Date(dateString);
+        const adjustedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+        return adjustedDate.toLocaleDateString(undefined, options);
+    };
 
-    return(
+    if (loading) return <p>Loading...</p>;
+    if (!booking) return <p> Booking not found</p>;
+
+    return (
         <main>
-            <h1>Booking Details</h1>
-            <h2>Booking Name: {booking.name}</h2>
-            <h3>Listing Details</h3>
-            <p>Title: {booking.listing.title}</p>
-            <p>Description: {booking.listing.description}</p>
-            <p>Price: {booking.listing.price}</p>
-            <p>Location:{booking.listing.location}</p>
-            {booking.listing.images && booking.listing.images.length > 0 && (
-                <div>
-                    <h3>Images Placeholder</h3>
+            <div className="booking-details-card">
+                <div className="img-container">
+                    <img src={randomImage} alt={booking.listing.title} />
+                    <div className="overlay">
+                        <h1 className="top-left">{booking.name}</h1>
+                        <div className="bottom-left">
+                            <h4>{booking.listing.title}</h4>
+                            <p>{booking.listing.description}</p>
+                        </div>
+                        <p className="top-right">${booking.listing.price}/night</p>
+                    </div>
                 </div>
-            )}
-            <h3>User Details</h3>
-            <p>Username: {booking.user.username}</p>
-            <p>Email: {booking.user.email}</p>
+                <div className="detail">
+                    <p>
+                        When: {formatDate(booking.startDate)} to {formatDate(booking.endDate)}
+                    </p>
+                    <p>
+                        Where: {booking.listing.location.city}, {booking.listing.location.state},{" "}
+                        {booking.listing.location.country}
+                    </p>
+                </div>
+            </div>
+            <button className="btn btn1" onClick={() => navigate("/mybookings")}>
+                Back to Your Bookings
+            </button>
         </main>
-    )
-
+    );
 };
 
 export default BookingDetail;
-

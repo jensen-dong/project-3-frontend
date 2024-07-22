@@ -17,6 +17,7 @@ import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 import ReviewForm from "./components/Review/ReviewForm";
 import Reviews from "./components/Review/Reviews"; 
+import Footer from "./components/Footer/Footer"
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
     const [listings, setListings] = useState([]);
     const [bookings, setBookings] = useState([]);
     const [reviews, setReviews] = useState({});
+  
      console.log("reviews", reviews)
 
 
@@ -43,7 +45,30 @@ const App = () => {
     };
     fetchListings();
   }, []);
+ 
+  //so reviews can be seen even after refreshing the browser
+  useEffect(() => { 
 
+    const fetchListingAndReviews = async() => {
+      try {
+        const allListings  = await bnbService.getAllListings();
+        setListings(allListings);
+  
+        const reviewsMap = {};
+  
+        for ( const listing of allListings) {
+          const reviews = await bnbService.getReviewsByListingId(listing._id);
+          reviewsMap[listing._id] = reviews
+        }
+        setReviews(reviewsMap)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchListingAndReviews()
+  
+  }, [])
+  
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -60,19 +85,23 @@ const App = () => {
   const addBooking = (newBooking) => {
         setBookings((prevBookings) => [...prevBookings, newBooking]);
     };
-
+    
+  
   const fetchAndUpdateReviews = async (listingId) => {
     try {
-      const updatedReviews = await bnbService.getReviewsByListingId(listingId);
-      console.log("Fetched reviews:", updatedReviews); // Log to verify data
-      setReviews((prevReviews) => ({
-        ...prevReviews,
-        [listingId]: updatedReviews,
-      }));
+        const updatedReviews = await bnbService.getReviewsByListingId(listingId);
+        console.log("Fetched reviews:", updatedReviews); 
+        setReviews(prevReviews => ({
+            ...prevReviews,
+            [listingId]: updatedReviews 
+        }));
     } catch (error) {
-      console.log("Error fetching reviews", error);
+        console.log("Error fetching reviews", error);
     }
-  };
+};
+
+
+  
 
   return (
     <>
@@ -120,6 +149,7 @@ const App = () => {
           </>
         )}
       </Routes>
+      <Footer />
     </>
   );
 };
