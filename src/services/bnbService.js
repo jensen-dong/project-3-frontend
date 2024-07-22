@@ -1,5 +1,6 @@
 const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
 
+
 const getAllListings = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}/listings`, {
@@ -113,6 +114,41 @@ const getBookingsById = async (id) => {
     }
 };
 
+const updateBooking = async(id, formData) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/bookings/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+        return res.json();
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
+const deleteBooking = async(id) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/bookings/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.json();
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 const getProfile = async () => {
     try {
         const token = localStorage.getItem("token");
@@ -181,6 +217,42 @@ const createBooking = async (formData) => {
     }
 };
 
+const updateReview = async (id, formData) => {
+
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/reviews/${id}`, {
+            method :"PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        });
+        return res.json();
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
+const getReviewsById = async(id) => {
+    try {
+        
+     const token = localStorage.getItem("token");
+     const res = await fetch(`${BACKEND_URL}/reviews/${id}`, {
+        method :"GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+     });
+     return res.json()
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
+
 const createReview = async (formData) => {
     try {
         const token = localStorage.getItem("token");
@@ -197,6 +269,23 @@ const createReview = async (formData) => {
         console.log("error", error);
     }
 };
+
+const deleteReview = async (id) => {
+
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/reviews/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        return res.json()
+    } catch (error) {
+        console.log("error", error);
+    }
+}
 
 const searchListings = async (query) => {
     try {
@@ -255,6 +344,11 @@ export {
     createReview,
     getReviewsByListingId,
     searchListings,
-    apiImages
+    apiImages,
+    updateReview,
+    getReviewsById,
+    deleteReview,
+    deleteBooking,
+    updateBooking
 };
 

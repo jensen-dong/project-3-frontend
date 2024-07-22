@@ -6,6 +6,7 @@
     width: 500px;
     background-color: #f7f7f7;
     transition: box-shadow 0.3s ease;
+    position: relative;
 }
 
 .booking-details-card:hover {
@@ -63,6 +64,7 @@
 
 .detail {
     padding: 10px;
+    
 }
 
 .btn1 {
@@ -71,5 +73,22 @@
 }
 
 .btn1:hover {
+    background-color: #033b8d;
+}
+
+.btnEdit {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    bottom: 25px;
+    right: 25px;
+    background-color: #0454bd;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btnEdit:hover {
     background-color: #033b8d;
 }

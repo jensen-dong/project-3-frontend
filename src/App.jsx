@@ -17,7 +17,9 @@ import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 import ReviewForm from "./components/Review/ReviewForm";
 import Reviews from "./components/Review/Reviews"; 
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
+import EditReviewForm from "./components/Review/EditReviewForm";
+import EditBookingForm from "./components/Bookings/EditBookingForm";
 
 const App = () => {
 
@@ -100,9 +102,23 @@ const App = () => {
     }
 };
 
+const updateListing = async() => {
+  try {
+    const updatedListing = await bnbService.getAllListings();
+    setListings(updatedListing)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
 
-  
-
+const updateBookings = async() => {
+  try {
+    const updateBooking = await bnbService.getAllBookings();
+    setBookings(updateBooking)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -118,15 +134,18 @@ const App = () => {
             <Route path="/profile" element={<Profile setUser={setUser} />} />
             <Route
               path="/mybookings"
-              element={<Bookings bookings={bookings} />}
+              element={<Bookings bookings={bookings} setBookings={setBookings} updateListing={updateListing} />}
             />
             <Route
                             path="/mybookings/new/:listingId"
                             element={<BookingForm addBooking={addBooking} />}
                         />
                         <Route path="/bookings/:id" element={ <BookingDetail />}/>
+                        <Route path="/bookings/edit/:id" element={ <EditBookingForm updateBookings={updateBookings}/>}/>
                         <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
                         <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
+                        <Route path="/reviews/edit/:id" element={ <EditReviewForm/>}/>
+                        
             {user.isHost && (
               <>
                 <Route

@@ -1,0 +1,91 @@
+.review-main {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 100px rgba(0, 0, 0, 0.1);
+}
+
+.review-main h1 {
+    text-align: center;
+    color: #0454bd;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid salmon; */
+}
+
+.review-field {
+    margin-bottom: 15px;
+    margin-right: 25px;
+    
+}
+
+.review-field label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    
+}
+.review-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+} 
+
+.review-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.review-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewbtn {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.reviewbtn1 {
+    background-color: #0454bd;
+    color: #f7f7f7;
+    
+}
+
+.reviewbtn1:disabled {
+    background-color: #a0c4ff;
+}
+
+.reviewbtn1:disabled:hover {
+    background-color: #a0c4ff;
+}
+
+.reviewbtn1:hover {
+    background-color: #023e8a;
+}
+
+.reviewbtn2 {
+    background-color: hsl(214, 96%, 80%);
+    color: #333;
+    
+}
+
+.reviewbtn2:hover {
+    background-color: hsl(214, 96%, 90%);
+}
