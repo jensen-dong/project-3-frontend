@@ -235,6 +235,23 @@ const createReview = async (formData) => {
     }
 };
 
+const deleteReview = async (id) => {
+
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/reviews/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        return res.json()
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
 const searchListings = async (query) => {
     try {
         const res = await fetch(`${BACKEND_URL}/listings/search?q=${query}`, {
@@ -294,6 +311,7 @@ export {
     searchListings,
     apiImages,
     updateReview,
-    getReviewsById
+    getReviewsById,
+    deleteReview
 };
 
