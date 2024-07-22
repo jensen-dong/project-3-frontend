@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import "./Bookings.css";
+
 
 const Bookings = (props) => {
     const [randomImages, setRandomImages] = useState([]);
     const [bookingImages, setBookingImages] = useState({});
+    const navigate = useNavigate();
 
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" };
@@ -36,6 +38,22 @@ const Bookings = (props) => {
         }
     }, [randomImages, props.bookings]);
 
+    const handleDelete = async(bookinId) => {
+        const isConfirmed = window.confirm("are you sure want to delete review");
+        if(!isConfirmed) return;
+        try {
+          await bnbService.deleteBooking(bookinId);
+          const updateBookings = props.bookings.filter((booking) => (
+            booking._id !== bookinId
+          ));
+          props.setBookings(updateBookings)
+          props.updateListing();
+          navigate("/")
+        } catch (error) {
+          console.log("error", error)
+        }
+      }
+  
     return (
         <main>
             <h1 className="your-bookings">Your Bookings</h1>
@@ -62,6 +80,9 @@ const Bookings = (props) => {
                                     >
                                         Listing
                                     </Link>
+                                    <button className="btn btn1" onClick={ () => handleDelete(booking._id)}>
+                                              Delete
+                                        </button>
                                 </div>
                             </div>
                         </div>
@@ -70,6 +91,7 @@ const Bookings = (props) => {
                     <p>You haven't booked anything yet!</p>
                 )}
             </div>
+            
         </main>
     );
 };

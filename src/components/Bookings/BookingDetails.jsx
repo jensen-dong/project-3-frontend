@@ -34,6 +34,8 @@ const BookingDetail = () => {
         return adjustedDate.toLocaleDateString(undefined, options);
     };
 
+  
+      
     if (loading) return <p>Loading...</p>;
     if (!booking) return <p> Booking not found</p>;
 
@@ -64,6 +66,7 @@ const BookingDetail = () => {
             <button className="btn btn1" onClick={() => navigate("/mybookings")}>
                 Back to Your Bookings
             </button>
+           
         </main>
     );
 };

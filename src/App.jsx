@@ -101,8 +101,15 @@ const App = () => {
     }
 };
 
+const updateListing = async() => {
+  try {
+    const updatedListing = await bnbService.getAllListings();
+    setListings(updatedListing)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
 
-  
 
   return (
     <>
@@ -119,7 +126,7 @@ const App = () => {
             <Route path="/profile" element={<Profile setUser={setUser} />} />
             <Route
               path="/mybookings"
-              element={<Bookings bookings={bookings} />}
+              element={<Bookings bookings={bookings} setBookings={setBookings} updateListing={updateListing} />}
             />
             <Route
                             path="/mybookings/new/:listingId"
