@@ -38,6 +38,9 @@ const EditReviewForm = () => {
     if(loading) return <p>Loading...</p>
 
     return(
+        <main className="">
+
+        
         <form onSubmit={handleSubmit}>
            <div>
             <label htmlFor="content">Content</label>
@@ -54,6 +57,7 @@ const EditReviewForm = () => {
            </div>
            <button type="submit"> Submit review </button>
         </form>
+        </main>
     )
     
 };

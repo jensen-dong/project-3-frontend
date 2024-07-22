@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
+import "./ReviewForm.css"
 
 const ReviewForm = ({fetchAndUpdateReviews}) => {
 
@@ -47,12 +48,16 @@ const ReviewForm = ({fetchAndUpdateReviews}) => {
    const isFormInValid = () => {
     return !(formData.content )
    }
+
+   const handleCancle=() => {
+    navigate("/")
+   }
   
    return(
-    <main>
+    <main className="main-booking">
         <h1>Add Review</h1>
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className="form-booking">
+            <div className="field-booking">
             <label htmlFor="content">Review Cntent:</label>
             <input type="text"
             id="content"
@@ -61,7 +66,7 @@ const ReviewForm = ({fetchAndUpdateReviews}) => {
             onChange={handleChange}
             required/>
             </div>
-            <div>
+            <div className="field-booking">
             <label htmlFor="rating">Rating:</label>
             <input type="number"
             id="rating"
@@ -71,9 +76,10 @@ const ReviewForm = ({fetchAndUpdateReviews}) => {
             required/>
             </div>
             {error && <p>{error}</p>}
-            <div>
-                <button type="submit" disabled={isFormInValid()}>Submit Review</button>
-                <button type="button" className="btn btn2">
+            <div className="buttons">
+                <button type="submit" disabled={isFormInValid()} className="btnnew btnnew1">Submit Review</button>
+                <button type="button" className="btnnew btnnew2"
+                onClick={handleCancle}>
                         Cancel
                     </button>
             </div>
