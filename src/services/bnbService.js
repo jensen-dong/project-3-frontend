@@ -232,6 +232,14 @@ const getReviewsByListingId = async(listingId) => {
     }
 }
 
+const apiImages = async () => {
+    const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY;
+    const url = `https://api.unsplash.com/search/photos?query=lake-house&per_page=100&client_id=${apiKey}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results.map((image) => image.urls.regular);
+};
+
 export {
     getAllListings,
     getAllBookings,
@@ -247,5 +255,6 @@ export {
     createReview,
     getReviewsByListingId,
     searchListings,
+    apiImages
 };
 

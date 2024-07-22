@@ -77,6 +77,13 @@
     background-color: hsl(214, 96%, 90%);
 }
 
+.cancel {
+    position: relative;
+    margin: 20px;
+    padding: 10px 30px;
+    right: 110px;
+}
+
 .listing-details-main {
     position: relative;
     left: 20px;
