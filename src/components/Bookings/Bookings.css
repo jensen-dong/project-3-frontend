@@ -56,10 +56,12 @@
 
 .booking-overlay .top-right {
     position: absolute;
-    top: -10px;
-    right: 35px;
+    top: -15px;
+    right: 30px;
     display: flex;
     gap: 10px;
+   
+    
 }
 
 .btn1 {
@@ -75,5 +77,18 @@
 }
 
 .btn1:hover {
+    background-color: #033b8d;
+}
+.btnDel {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background-color: #0454bd;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.btnDel:hover {
     background-color: #033b8d;
 }

@@ -80,10 +80,16 @@ const Bookings = (props) => {
                                     >
                                         Listing
                                     </Link>
-                                    <button className="btn btn1" onClick={ () => handleDelete(booking._id)}>
+                                    
+                                    
+                                        
+                                </div>
+                                <div className="bottom">
+                                <button className="btn btnDel" onClick={ () => handleDelete(booking._id)}>
                                               Delete
                                         </button>
                                 </div>
+                                
                             </div>
                         </div>
                     ))

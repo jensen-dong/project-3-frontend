@@ -35,7 +35,9 @@ const BookingDetail = () => {
         return adjustedDate.toLocaleDateString(undefined, options);
     };
 
-  
+  const handleEdit = () => {
+    navigate(`/bookings/edit/${booking._id}`)
+  }
       
     if (loading) return <p>Loading...</p>;
     if (!booking) return <p> Booking not found</p>;
@@ -62,13 +64,17 @@ const BookingDetail = () => {
                         Where: {booking.listing.location.city}, {booking.listing.location.state},{" "}
                         {booking.listing.location.country}
                     </p>
-                </div>
-               
+                    
             </div>
+            <button onClick={handleEdit} className="btn btnEdit">Edit</button>
+                </div>
+                
             <button className="btn btn1" onClick={() => navigate("/mybookings")}>
                 Back to Your Bookings
             </button>
-            <Link to={`/bookings/edit/${booking._id}`}>Edit</Link>
+            
+            {/* <Link to={`/bookings/edit/${booking._id}`}>Edit</Link> */}
+           
         </main>
     );
 };
