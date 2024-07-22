@@ -13,6 +13,7 @@ const Listings = ({ listings }) => {
     };
     fetchImages();
   }, []);
+  console.log(listings)
 
   const formatDateRange = (dates) => {
     if (dates.length === 2) {

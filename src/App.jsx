@@ -134,7 +134,7 @@ const App = () => {
                   element={
                     <Listings
                       listings={listings.filter(
-                        (listing) => listing.owner === user._id
+                        (listing) => listing.owner && listing.owner._id === user._id
                       )}
                     />
                   }
