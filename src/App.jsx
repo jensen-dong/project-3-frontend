@@ -17,7 +17,8 @@ import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 import ReviewForm from "./components/Review/ReviewForm";
 import Reviews from "./components/Review/Reviews"; 
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
+import EditReviewForm from "./components/Review/EditReviewForm";
 
 const App = () => {
 
@@ -127,6 +128,7 @@ const App = () => {
                         <Route path="/bookings/:id" element={ <BookingDetail />}/>
                         <Route path="/reviews/new/:listingId" element={ <ReviewForm fetchAndUpdateReviews={fetchAndUpdateReviews}/>}/>
                         <Route path="/reviews/find/:id" element={ < Reviews reviews={reviews} />}/>
+                        <Route path="/reviews/edit/:id" element={ <EditReviewForm/>}/>
             {user.isHost && (
               <>
                 <Route
