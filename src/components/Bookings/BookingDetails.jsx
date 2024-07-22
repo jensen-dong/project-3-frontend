@@ -15,6 +15,9 @@ const BookingDetail = () => {
             try {
                 const data = await bnbService.getBookingsById(id);
                 setBooking(data);
+                const images = await bnbService.apiImages();
+                const randomIndex = Math.floor(Math.random() * images.length);
+                setRandomImage(images[randomIndex]);
             } catch (error) {
                 console.log("error", error);
             } finally {
@@ -22,12 +25,6 @@ const BookingDetail = () => {
             }
         };
         fetchBookings();
-
-        const fetchRandomImage = async () => {
-            const response = await fetch("https://picsum.photos/500/300");
-            setRandomImage(response.url);
-        };
-        fetchRandomImage();
     }, [id]);
 
     const formatDate = (dateString) => {
