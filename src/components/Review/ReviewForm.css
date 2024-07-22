@@ -1,0 +1,95 @@
+.main-booking {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 100px rgba(0, 0, 0, 0.1);
+}
+
+.main-booking h1 {
+    text-align: center;
+    color: #0454bd;
+}
+
+.form-booking {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-booking {
+    margin-bottom: 15px;
+    margin-right: 25px;
+}
+
+.field-booking label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    /* border: 2px solid saddlebrown */
+}
+
+.field-booking input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnnew {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+   
+}
+
+.btnnew1 {
+    background-color: #0454bd;
+    color: #f7f7f7;
+    
+}
+
+.btnnew1:disabled {
+    background-color: #a0c4ff;
+}
+
+.btnnew1:disabled:hover {
+    background-color: #a0c4ff;
+}
+
+.btnnew1:hover {
+    background-color: #023e8a;
+}
+
+.btnnew2 {
+    background-color: hsl(214, 96%, 80%);
+    color: #333;
+    
+}
+
+.btnnew2:hover {
+    background-color: hsl(214, 96%, 90%);
+}
+
+/* .cancel {
+    position: relative;
+    margin: 20px;
+    padding: 10px 30px;
+    right: 110px;
+}
+
+.listing-details-main {
+    position: relative;
+    left: 20px;
+    top: 5px;
+} */
