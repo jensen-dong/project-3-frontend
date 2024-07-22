@@ -17,6 +17,7 @@ import * as authService from "../src/services/authService";
 import * as bnbService from "../src/services/bnbService";
 import ReviewForm from "./components/Review/ReviewForm";
 import Reviews from "./components/Review/Reviews"; 
+import Footer from "./components/Footer/Footer"
 
 const App = () => {
 
@@ -148,6 +149,7 @@ const App = () => {
           </>
         )}
       </Routes>
+      <Footer />
     </>
   );
 };
