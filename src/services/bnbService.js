@@ -114,6 +114,22 @@ const getBookingsById = async (id) => {
     }
 };
 
+const deleteBooking = async(id) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BACKEND_URL}/bookings/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.json();
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
 const getProfile = async () => {
     try {
         const token = localStorage.getItem("token");
@@ -312,6 +328,7 @@ export {
     apiImages,
     updateReview,
     getReviewsById,
-    deleteReview
+    deleteReview,
+    deleteBooking
 };
 
