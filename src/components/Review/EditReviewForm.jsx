@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
+import "./EditReview.css"
 
 const EditReviewForm = () => {
     const {id} = useParams();
@@ -34,28 +35,35 @@ const EditReviewForm = () => {
         await bnbService.updateReview(id, formData);
         navigate(`/reviews/find/${formData.listing}`);
     };
+
+    const isFormInvalid =() => {
+        return !(formData.content && formData.rating)
+    }
     
     if(loading) return <p>Loading...</p>
 
     return(
-        <main className="">
-
+        <main className="review-main">
+<h1> Edit your reviews</h1>
         
-        <form onSubmit={handleSubmit}>
-           <div>
+        <form onSubmit={handleSubmit} className="review-form">
+           <div className="review-field">
             <label htmlFor="content">Content</label>
             <textarea 
             name="content" value={formData.content}
             onChange={handleChange}/>
            </div>
-           <div>
+           <div className="review-field">
             <label htmlFor="rating">Rating</label>
             <input type="number"
             name="rating"
             value={formData.rating}
             onChange={handleChange} />
            </div>
-           <button type="submit"> Submit review </button>
+           <div className="review-buttons">
+           <button type="submit" disabled= {isFormInvalid()}className="reviewbtn reviewbtn1"> Submit review </button>
+           <button type="submit" className="reviewbtn reviewbtn2"> Go Back </button>
+           </div>
         </form>
         </main>
     )
