@@ -5,6 +5,7 @@ import BookingForm from "./components/Bookings/BookingForm";
 import BookingDetail from "./components/Bookings/BookingDetails";
 import EditReviewForm from "./components/Review/EditReviewForm";
 import EditBookingForm from "./components/Bookings/EditBookingForm";
+import Error404 from "./components/404/404";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
 import Listings from "./components/Listings/Listings";
@@ -122,6 +123,7 @@ const App = () => {
                 <Route path="/signup" element={<SignupForm setUser={setUser} />} />
                 <Route path="/signin" element={<SigninForm setUser={setUser} />} />
                 <Route path="/search" element={<SearchResults />} />
+                <Route path="*" element={<Error404 />} /> {/* Catch-all route for 404 */}
                 {user && (
                     <>
                         <Route path="/profile" element={<Profile setUser={setUser} />} />
