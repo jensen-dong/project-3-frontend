@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import * as bnbService from "../../services/bnbService";
+import "./ManageListing.css";
 
 const NewListing = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,6 @@ const NewListing = () => {
     images: [],
     available_dates: [],
   });
-
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(),
@@ -26,7 +26,6 @@ const NewListing = () => {
       key: "selection",
     },
   ]);
-
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -70,72 +69,75 @@ const NewListing = () => {
   };
 
   return (
-    <main>
+    <main className="listing-form-container">
       <h1>Create New Listing</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          ></textarea>
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          City:
-          <input
-            type="text"
-            name="location.city"
-            value={formData.location.city}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          State:
-          <input
-            type="text"
-            name="location.state"
-            value={formData.location.state}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Country:
-          <input
-            type="text"
-            name="location.country"
-            value={formData.location.country}
-            onChange={handleChange}
-          />
-        </label>
+      <form className="listing-form" onSubmit={handleSubmit}>
+        <div className="listing-details">
+          <label>
+            Title:
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Description:
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            ></textarea>
+          </label>
+          <label>
+            Price:
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            City:
+            <input
+              type="text"
+              name="location.city"
+              value={formData.location.city}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            State:
+            <input
+              type="text"
+              name="location.state"
+              value={formData.location.state}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Country:
+            <input
+              type="text"
+              name="location.country"
+              value={formData.location.country}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
         <label>
           Available Dates:
-          <DateRange
-            editableDateInputs={true}
-            onChange={handleDateChange}
-            moveRangeOnFirstSelection={false}
-            ranges={dateRange}
-          />
+          <div className="date-range-picker">
+            <DateRange
+              editableDateInputs={true}
+              onChange={handleDateChange}
+              moveRangeOnFirstSelection={false}
+              ranges={dateRange}
+            />
+          </div>
         </label>
-        {/*placeholder for image stuff*/}
         <button type="submit">Create Listing</button>
       </form>
       {message && <p>{message}</p>}
