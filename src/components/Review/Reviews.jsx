@@ -11,6 +11,8 @@ const Reviews = () => {
     console.log("id", id)
     // const listingReviews = reviews[id] || []; 
     const [ reviews, setReviews] = useState([]);
+    const [ listings, setListings ] = useState({});
+    const [randomImage, setRandomImage] = useState(null);
     const [ loading, setLoading ] = useState(true);
     const navigate = useNavigate();
 
@@ -20,13 +22,29 @@ const Reviews = () => {
                 const data = await bnbService.getReviewsByListingId(id);
                 console.log("find by id", data)
                 setReviews(data);
+
+                const findListing = {};
+                for( let review of data) {
+                    if(!findListing[review.listing]) {
+                        const listing = await bnbService.getListingById(review.listing)
+                        findListing[listing._id] = listing
+                    }
+                }
+                setListings(findListing)
             } catch (error) {
                 console.log("error", error)
             } finally{
                 setLoading(false)
             }
         };
-        fetchReviews()
+        fetchReviews();
+
+        const fetchRandomImage = async () => {
+            const images = await bnbService.apiImages();
+            const randomIndex = Math.floor(Math.random() * images.length);
+          setRandomImage(images[randomIndex])
+         };
+         fetchRandomImage();
     }, [id])
     
     const handleDelete = async(delId) => {
@@ -53,6 +71,8 @@ const Reviews = () => {
         navigate(`/reviews/edit/${reviewId}`)
     }
 
+    
+
     if (loading) return <p>Loading...</p>;
 
     return(
@@ -65,17 +85,31 @@ const Reviews = () => {
                         
                         return(
                            
-                            <div key={review._id} className="review-card">
-                                <div className="review-content">
-                                <p>Content: {review.content}</p>
-                                <p>Rating: {review.rating}</p>
-                                </div>
-                                <div className="review-actions">
+                            <div key={review._id} className="review-details">
+                                <div className="review-card">
+                                    <h1> {listings[review.listing].title}</h1>
+                                    <p> {listings[review.listing].description}</p>
+                                    <p className="location">Location: {listings[review.listing].location.city}, {listings[review.listing].location.state}, {listings[review.listing].location.country}</p>
+                                    {randomImage ? (
+                                        <img src={randomImage} alt={listings[review.listing].title} />
+                                    ) : (
+                                        <div> 
+                                            style={{
+                                    width: "200px",
+                                        height: "200px",
+                                             backgroundColor: "#f0f0f0",
+                                                  }}
+                                        </div>
+                                    )}
+                                <p className="review">Review: {review.content}</p>
+                                <p className="review">Rating: {review.rating}</p>
                                 
-                                <button onClick={() => handleClick(review._id)} className="buttonReview buttonReview-edit">Edit Review</button>
+                                <div className="review-buttons">
+                                
+                                <button onClick={() => handleClick(review._id)} className="buttonReview">Edit Review</button>
                                
-                                <button onClick={ () => handleDelete(review._id)} className="buttonReview buttonReview-delete">Delete Review</button>
-                                
+                                <button onClick={ () => handleDelete(review._id)} className="buttonReview">Delete Review</button>
+                                </div>
                             </div>
                             </div>
                         )

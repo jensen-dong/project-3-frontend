@@ -58,8 +58,8 @@ const ReviewForm = ({fetchAndUpdateReviews}) => {
         <h1>Add Review</h1>
         <form onSubmit={handleSubmit} className="form-booking">
             <div className="field-booking">
-            <label htmlFor="content">Review Cntent:</label>
-            <input type="text"
+            <label htmlFor="content">Destination Review:</label>
+            <textarea type="text"
             id="content"
             value={formData.content} 
             name="content"
