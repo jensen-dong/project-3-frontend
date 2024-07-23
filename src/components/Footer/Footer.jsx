@@ -1,5 +1,3 @@
-//NEED TO ADD TO APP.JSX STILL. Removed to not interfere with others for now
-
 import "./Footer.css";
 
 const Footer = () => {

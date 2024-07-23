@@ -24,9 +24,6 @@ const NavBar = ({ user, handleSignout }) => {
                     <li className="mid">
                         <Link to="/mybookings">Your Bookings</Link>
                     </li>
-                    {/* <li className="mid">
-                        <Link to={`/mybookins/new/${listings.length > 0 ? listings[0]._id: ""}`}>Book Now</Link>
-                    </li> */}
                     </>
                 )}
             </ul>
@@ -35,7 +32,7 @@ const NavBar = ({ user, handleSignout }) => {
                     <li className="icon">
                         <img
                             src="/images/profile-icon.png"
-                            alt="Profile"
+                            alt="profile-icon"
                             height="25px"
                         />
                         <ul className="dropdown">
