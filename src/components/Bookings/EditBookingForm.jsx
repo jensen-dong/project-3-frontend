@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
+import "./EditBookingForm.css"
 
 const EditBookingForm = (props) => {
     const [ formData, setFormData] = useState({
@@ -37,21 +38,32 @@ const EditBookingForm = (props) => {
     // if(loading) return <p>Loading...</p>
 
     return(
+        <main className="editbooking-main">
+            <h1 className="editbooking-form">Edit your booking</h1>
         <form onSubmit={handleSubmit}>
+            <div className="editbooking-field">
             <label htmlFor="name"></label>
             <input type="text"
             name="name"
             value={formData.name} 
             onChange={handleChange}/>
+            </div>
+            <div className="editbooking-field">
             <label htmlFor="startDate"></label>
             <input type="text"
             value={new Date(formData.startDate).toLocaleDateString()} 
             readOnly/>
+            </div>
+            <div className="editbooking-field">
             <label htmlFor="endDate"></label>
             <input type="text"
             value={new Date(formData.endDate).toLocaleDateString()} />
-            <button type="submit">Edit</button>
+            </div>
+            <div className="editbutton">
+            <button type="submit" className="editbth editbtn1">Edit</button>
+            </div>
         </form>
+        </main>
     )
 };
 

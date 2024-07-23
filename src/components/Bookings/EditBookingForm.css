@@ -1,0 +1,78 @@
+.editbooking-main {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 100px rgba(0, 0, 0, 0.1);
+}
+
+.editbooking-main h1 {
+    text-align: center;
+    color: #0454bd;
+}
+
+.editbooking-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid salmon; */
+}
+
+.editbooking-field {
+    margin-bottom: 15px;
+    margin-right: 25px;
+    
+}
+
+.editbooking-field label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    
+}
+.editbooking-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+} 
+
+.editbooking-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.editbutton {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.editbth {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 5px;
+    margin: 0 auto;
+    
+}
+
+.editbtn1 {
+    background-color: #0454bd;
+    color: #f7f7f7;
+    transition: .5s ease;
+    
+}
+
+.editbtn1:hover {
+    background-color: #023e8a;
+}
+
