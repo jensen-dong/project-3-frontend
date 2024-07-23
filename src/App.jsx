@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
-import Landing from "./components/Landing/Landing";
-import SignupForm from "./components/SignupForm/SignupForm";
-import SigninForm from "./components/SigninForm/SigninForm";
-import Profile from "./components/Profile/Profile";
-import Listings from "./components/Listings/Listings";
-import ListingDetail from "./components/Listings/ListingDetail";
-import ManageListing from "./components/Profile/ManageListing";
-import NewListing from "./components/Profile/NewListing";
 import Bookings from "./components/Bookings/Bookings";
 import BookingForm from "./components/Bookings/BookingForm";
 import BookingDetail from "./components/Bookings/BookingDetails";
-import SearchResults from "./components/Search/SearchResults";
-import * as authService from "../src/services/authService";
-import * as bnbService from "../src/services/bnbService";
-import ReviewForm from "./components/Review/ReviewForm";
-import Reviews from "./components/Review/Reviews";
-import Footer from "./components/Footer/Footer";
 import EditReviewForm from "./components/Review/EditReviewForm";
 import EditBookingForm from "./components/Bookings/EditBookingForm";
+import Footer from "./components/Footer/Footer";
+import Landing from "./components/Landing/Landing";
+import Listings from "./components/Listings/Listings";
+import ListingDetail from "./components/Listings/ListingDetail";
+import ManageListing from "./components/Profile/ManageListing";
+import NavBar from "./components/NavBar/NavBar";
+import NewListing from "./components/Profile/NewListing";
+import Profile from "./components/Profile/Profile";
+import Reviews from "./components/Review/Reviews";
+import ReviewForm from "./components/Review/ReviewForm";
+import SearchResults from "./components/Search/SearchResults";
+import SigninForm from "./components/SigninForm/SigninForm";
+import SignupForm from "./components/SignupForm/SignupForm";
+import * as authService from "../src/services/authService";
+import * as bnbService from "../src/services/bnbService";
 import "./App.css"
 
 const App = () => {
