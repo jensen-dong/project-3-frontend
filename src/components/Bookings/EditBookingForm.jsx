@@ -35,8 +35,6 @@ const EditBookingForm = (props) => {
         props.updateBookings();
     };
 
-    // if(loading) return <p>Loading...</p>
-
     return(
         <main className="editbooking-main">
             <h1 className="editbooking-form">Edit your booking</h1>

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import "./BookingDetails.css";
 
-
 const BookingDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -35,10 +34,10 @@ const BookingDetail = () => {
         return adjustedDate.toLocaleDateString(undefined, options);
     };
 
-  const handleEdit = () => {
-    navigate(`/bookings/edit/${booking._id}`)
-  }
-      
+    const handleEdit = () => {
+        navigate(`/bookings/edit/${booking._id}`);
+    };
+
     if (loading) return <p>Loading...</p>;
     if (!booking) return <p> Booking not found</p>;
 
@@ -64,17 +63,15 @@ const BookingDetail = () => {
                         Where: {booking.listing.location.city}, {booking.listing.location.state},{" "}
                         {booking.listing.location.country}
                     </p>
-                    
-            </div>
-            <button onClick={handleEdit} className="btn btnEdit">Edit</button>
                 </div>
-                
+                <button onClick={handleEdit} className="btn btnEdit">
+                    Edit
+                </button>
+            </div>
+
             <button className="btn btn1" onClick={() => navigate("/mybookings")}>
                 Back to Your Bookings
             </button>
-            
-           
-           
         </main>
     );
 };
