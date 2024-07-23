@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
-import "./SignUpForm.css"
+import "./SignUpForm.css";
 
 const SignupForm = (props) => {
     const navigate = useNavigate();
@@ -22,13 +22,30 @@ const SignupForm = (props) => {
     };
 
     const handleChange = (e) => {
-        const { name, type, checked, value } = e.target
-        // setFormData({ ...formData, [e.target.name]: e.target.value });
-        setFormData( { ...formData, [name]: type === "checkbox" ? checked : value})
+        const { name, type, checked, value } = e.target;
+        setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+    };
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const validatePhoneNumber = (phone) => {
+        const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+        return phoneRegex.test(phone);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateEmail(formData.email)) {
+            updateMessage("Email format invalid!");
+            return;
+        }
+        if (!validatePhoneNumber(formData.phone_number)) {
+            updateMessage("Phone number format invalid! (###-###-####)");
+            return;
+        }
         try {
             const newUserResponse = await authService.signup(formData);
             props.setUser(newUserResponse.user);
@@ -38,16 +55,24 @@ const SignupForm = (props) => {
         }
     };
 
-    const { username, firstName, lastName, email, phone_number, isHost, password, passwordConf,  } = formData;
+    const { username, firstName, lastName, email, phone_number, isHost, password, passwordConf } =
+        formData;
 
     const isFormInvalid = () => {
-        return !(username && firstName && lastName && email && phone_number && password && password === passwordConf);
+        return !(
+            username &&
+            firstName &&
+            lastName &&
+            email &&
+            phone_number &&
+            password &&
+            password === passwordConf
+        );
     };
 
     return (
         <main className="signup-main">
             <h1>Sign Up</h1>
-            <p>{message}</p>
             <form onSubmit={handleSubmit} className="signup-form">
                 <div className="signup-field">
                     <label htmlFor="username">Username: </label>
@@ -137,9 +162,11 @@ const SignupForm = (props) => {
                     />
                 </div>
                 <div className="signup-buttons">
-                    <button disabled={isFormInvalid()} className="btn btn1">Sign Up</button>
+                    <button disabled={isFormInvalid()} className="btn btn1">
+                        Sign Up
+                    </button>
                     <Link to="/">
-                        <button className="btn btn2">Cancel</button>
+                        <button className="btn btn2 cncl">Cancel</button>
                     </Link>
                 </div>
             </form>

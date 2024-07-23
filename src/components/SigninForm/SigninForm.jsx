@@ -1,5 +1,3 @@
-// I think I want to modify this more after we create the Listing Cards, might be cool to display these on log in page to make it look a little less bland.
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
@@ -36,7 +34,6 @@ const SigninForm = (props) => {
     return (
         <main className="signin-main">
             <h1>Log In</h1>
-            {/* <p>{message}</p> Might replace with some text. */}
             <form autoComplete="off" onSubmit={handleSubmit} className="signin-form">
                 <div className="signin-field">
                     <label htmlFor="email">Username:</label>
@@ -67,7 +64,7 @@ const SigninForm = (props) => {
                         Log In
                     </button>
                     <Link to="/">
-                        <button className="btn btn2">Cancel</button>
+                        <button className="btn btn2 cncl">Cancel</button>
                     </Link>
                 </div>
             </form>

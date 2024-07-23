@@ -11,9 +11,6 @@ const Landing = ({ listings }) => {
     return (
         <main>
             <Search onSearch={handleSearch} />
-            <h3>
-                View listings, search bar/fields, listings sections with different scenery/areas?
-            </h3>
             <Listings listings={listings} />
         </main>
     );

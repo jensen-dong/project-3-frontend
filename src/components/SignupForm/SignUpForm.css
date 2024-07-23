@@ -86,4 +86,10 @@
     background-color: hsl(214, 96%, 90%);
 }
 
+.cncl {
+    position: relative;
+    top: 20px;
+    right: 130px;
+}
+
 
