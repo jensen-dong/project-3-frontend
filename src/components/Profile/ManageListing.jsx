@@ -4,6 +4,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import * as bnbService from "../../services/bnbService";
+import "./ManageListing.css";
 
 const ManageListing = () => {
   const { id } = useParams();
@@ -118,76 +119,77 @@ const ManageListing = () => {
   if (!listing) return <p>Loading...</p>;
 
   return (
-    <main>
+    <main className="listing-form-container">
       <h1>Edit Listing</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          ></textarea>
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          City:
-          <input
-            type="text"
-            name="location.city"
-            value={formData.location.city}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          State:
-          <input
-            type="text"
-            name="location.state"
-            value={formData.location.state}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Country:
-          <input
-            type="text"
-            name="location.country"
-            value={formData.location.country}
-            onChange={handleChange}
-          />
-        </label>
+      <form className="listing-form" onSubmit={handleSubmit}>
+        <div className="listing-details">
+          <label>
+            Title:
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Description:
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            ></textarea>
+          </label>
+          <label>
+            Price:
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            City:
+            <input
+              type="text"
+              name="location.city"
+              value={formData.location.city}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            State:
+            <input
+              type="text"
+              name="location.state"
+              value={formData.location.state}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Country:
+            <input
+              type="text"
+              name="location.country"
+              value={formData.location.country}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
         <label>
           Available Dates:
-          <DateRange
-            editableDateInputs={true}
-            onChange={handleDateChange}
-            moveRangeOnFirstSelection={false}
-            ranges={dateRange}
-          />
+          <div className="date-range-picker">
+            <DateRange
+              editableDateInputs={true}
+              onChange={handleDateChange}
+              moveRangeOnFirstSelection={false}
+              ranges={dateRange}
+            />
+          </div>
         </label>
         <button type="submit">Update Listing</button>
-        <button
-          type="button"
-          onClick={handleDelete}
-        >
+        <button type="button" onClick={handleDelete}>
           Delete Listing
         </button>
       </form>

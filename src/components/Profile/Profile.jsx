@@ -48,20 +48,25 @@ const Profile = ({ setUser }) => {
     try {
       const updatedProfile = await bnbService.updateProfile(formData);
       setProfile(updatedProfile);
-      setMessage("Profile is updated!");
+      setMessage("Profile updated successfully!");
     } catch (err) {
       console.log(err);
     }
   };
 
   const handleDelete = async () => {
-    try {
-      await bnbService.deleteProfile();
-      authService.signout();
-      setUser(null);
-      navigate("/");
-    } catch (err) {
-      console.log(err);
+    const confirmDelete = window.confirm(
+      "Please confirm to delete your profile. This action cannot be undone."
+    );
+    if (confirmDelete) {
+      try {
+        await bnbService.deleteProfile();
+        authService.signout();
+        setUser(null);
+        navigate("/");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
