@@ -64,12 +64,10 @@ const EditReviewForm = () => {
                         disabled={isFormInvalid()}
                         className="reviewbtn reviewbtn1"
                     >
-                        {" "}
-                        Submit review{" "}
+                        Submit review
                     </button>
                     <button type="submit" className="reviewbtn reviewbtn2">
-                        {" "}
-                        Go Back{" "}
+                        Go Back
                     </button>
                 </div>
             </form>
