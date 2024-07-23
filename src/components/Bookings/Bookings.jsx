@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import "./Bookings.css";
 
-
 const Bookings = (props) => {
     const [randomImages, setRandomImages] = useState([]);
     const [bookingImages, setBookingImages] = useState({});
@@ -28,32 +27,30 @@ const Bookings = (props) => {
         if (randomImages.length > 0 && props.bookings.length > 0) {
             const newBookingImages = {};
             const availableImages = [...randomImages];
-    
+
             props.bookings.forEach((booking) => {
                 const randomIndex = Math.floor(Math.random() * availableImages.length);
                 newBookingImages[booking._id] = availableImages.splice(randomIndex, 1)[0];
             });
-    
+
             setBookingImages(newBookingImages);
         }
     }, [randomImages, props.bookings]);
 
-    const handleDelete = async(bookinId) => {
-        const isConfirmed = window.confirm("are you sure want to delete review");
-        if(!isConfirmed) return;
+    const handleDelete = async (bookingId) => {
+        const isConfirmed = window.confirm("Are you sure you want to delete this booking?");
+        if (!isConfirmed) return;
         try {
-          await bnbService.deleteBooking(bookinId);
-          const updateBookings = props.bookings.filter((booking) => (
-            booking._id !== bookinId
-          ));
-          props.setBookings(updateBookings)
-          props.updateListing();
-          navigate("/")
+            await bnbService.deleteBooking(bookingId);
+            const updateBookings = props.bookings.filter((booking) => booking._id !== bookingId);
+            props.setBookings(updateBookings);
+            props.updateListing();
+            navigate("/");
         } catch (error) {
-          console.log("error", error)
+            console.log("error", error);
         }
-      }
-  
+    };
+
     return (
         <main>
             <h1 className="your-bookings">Your Bookings</h1>
@@ -80,16 +77,15 @@ const Bookings = (props) => {
                                     >
                                         Listing
                                     </Link>
-                                    
-                                    
-                                        
                                 </div>
                                 <div className="bottom">
-                                <button className="btn btnDel" onClick={ () => handleDelete(booking._id)}>
-                                              Delete
-                                        </button>
+                                    <button
+                                        className="btn btnDel"
+                                        onClick={() => handleDelete(booking._id)}
+                                    >
+                                        Delete
+                                    </button>
                                 </div>
-                                
                             </div>
                         </div>
                     ))
@@ -97,7 +93,6 @@ const Bookings = (props) => {
                     <p>You haven't booked anything yet!</p>
                 )}
             </div>
-            
         </main>
     );
 };
