@@ -1,11 +1,11 @@
-.listing-form-container {
+.listingFormContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
-.listing-form {
+.listingForm {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -13,16 +13,16 @@
     margin-bottom: 20px;
 }
 
-.listing-details {
+.listingDetails {
     display: flex;
     flex-direction: column;
 }
 
-.listing-details label {
+.listingDetails label {
     margin-bottom: 10px;
 }
 
-.listing-details input, .listing-details textarea {
+.listingDetails input, .listingDetails textarea {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -30,7 +30,7 @@
     border-radius: 5px;
 }
 
-.listing-form button {
+.listingForm button {
     padding: 10px;
     margin-top: 10px;
     border: none;
@@ -40,12 +40,13 @@
     cursor: pointer;
 }
 
-.listing-form button:disabled {
+.listingForm button:disabled {
     background-color: #ccc;
 }
 
-.date-range-picker {
-    display: flex;
-    justify-content: center;
+.dateRangeContainer {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

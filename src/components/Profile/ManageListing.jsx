@@ -4,7 +4,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import * as bnbService from "../../services/bnbService";
-import "./ManageListing.css";
+import styles from "./ManageListing.module.css";
 
 const ManageListing = () => {
   const { id } = useParams();
@@ -119,10 +119,10 @@ const ManageListing = () => {
   if (!listing) return <p>Loading...</p>;
 
   return (
-    <main className="listing-form-container">
+    <main className={styles.listingFormContainer}>
       <h1>Edit Listing</h1>
-      <form className="listing-form" onSubmit={handleSubmit}>
-        <div className="listing-details">
+      <form className={styles.listingForm} onSubmit={handleSubmit}>
+        <div className={styles.listingDetails}>
           <label>
             Title:
             <input
@@ -177,17 +177,17 @@ const ManageListing = () => {
             />
           </label>
         </div>
-        <label>
-          Available Dates:
-          <div className="date-range-picker">
+        <div className={styles.dateRangeContainer}>
+          <label>
+            Available Dates:
             <DateRange
               editableDateInputs={true}
               onChange={handleDateChange}
               moveRangeOnFirstSelection={false}
               ranges={dateRange}
             />
-          </div>
-        </label>
+          </label>
+        </div>
         <button type="submit">Update Listing</button>
         <button type="button" onClick={handleDelete}>
           Delete Listing
