@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import * as authService from "../../services/authService";
+import "./Profile.css";
 
 const Profile = ({ setUser }) => {
   const [profile, setProfile] = useState(null);
@@ -45,7 +46,7 @@ const Profile = ({ setUser }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const updatedProfile = await bnbService.updatedProfile(formData);
+      const updatedProfile = await bnbService.updateProfile(formData);
       setProfile(updatedProfile);
       setMessage("Profile is updated!");
     } catch (err) {
@@ -67,9 +68,12 @@ const Profile = ({ setUser }) => {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <main>
-      <h1>Profile</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="profile-container">
+      <div className="profile-header">
+        <h1>Account</h1>
+        <p>{profile.firstName} {profile.lastName}, {profile.email} · <Link to="/profile">Go to profile</Link></p>
+      </div>
+      <form className="profile-form" onSubmit={handleSubmit}>
         <label>
           Username:
           <input
@@ -139,22 +143,22 @@ const Profile = ({ setUser }) => {
         </button>
       </form>
       {message && <p>{message}</p>}
-      {profile.isHost && profile.listings && (
-        <div>
-          <h2>Your Listings</h2>
-          {profile.isHost && (
-                <>
-                    <button>
-                        <Link to="/mylistings">Manage Listings</Link>
-                    </button>
-                    <button>
-                        <Link to="/listings/new">Rent Your Property</Link>
-                    </button>
-                </>
-            )}
+      {profile.isHost && (
+        <div className="profile-grid-container">
+          <div className="profile-grid-item">
+            <h3>Your Listings</h3>
+            <p>Manage and view your listings.</p>
+            <Link to="/mylistings">Manage Listings</Link>
+          </div>
+          <div className="profile-grid-item">
+            <h3>Rent Your Property</h3>
+            <p>Add a new property to rent.</p>
+            <Link to="/listings/new">Rent Your Property</Link>
+          </div>
         </div>
       )}
-    </main>
+    </div>
   );
 };
+
 export default Profile;
