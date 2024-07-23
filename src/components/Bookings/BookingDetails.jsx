@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as bnbService from "../../services/bnbService";
 import "./BookingDetails.css";
-import { Link } from "react-router-dom";
+
 
 const BookingDetail = () => {
     const { id } = useParams();
@@ -73,7 +73,7 @@ const BookingDetail = () => {
                 Back to Your Bookings
             </button>
             
-            {/* <Link to={`/bookings/edit/${booking._id}`}>Edit</Link> */}
+           
            
         </main>
     );
