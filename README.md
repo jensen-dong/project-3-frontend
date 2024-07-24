@@ -6,7 +6,7 @@ Waterbnb is a web application designed to help users find and book unique getawa
 
 ## Getting Started
 ### Deployed App
-Check out the live app!: [Waterbnb](add_link_here)
+Check out the live app: [Waterbnb](https://waterbnb-frontend.onrender.com/)
 
 ### Planning Materials
 Our planning process involved discussions in Slack and task tracking through a Google Doc. These discussions helped us outline the key features, set milestones, and assign tasks to team members.
