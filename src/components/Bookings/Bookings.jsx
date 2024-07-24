@@ -60,7 +60,9 @@ const Bookings = (props) => {
                         <div className="booking-card" key={booking._id}>
                             <img src={bookingImages[booking._id]} alt={booking.listing.title} />
                             <div className="booking-overlay">
-                                <h1>{booking.name}</h1>
+                                <div className="top-left">
+                                    <h1 className="booking-title">{booking.name}</h1>
+                                </div>
                                 <div className="bottom-left">
                                     <p>
                                         {formatDate(booking.startDate)} to{" "}

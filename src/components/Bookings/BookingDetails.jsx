@@ -47,7 +47,9 @@ const BookingDetail = () => {
                 <div className="img-container">
                     <img src={randomImage} alt={booking.listing.title} />
                     <div className="overlay">
-                        <h1 className="top-left">{booking.name}</h1>
+                        <div className="top-left">
+                            <h1 className="booking-title">{booking.name}</h1>
+                        </div>
                         <div className="bottom-left">
                             <h4>{booking.listing.title}</h4>
                             <p>{booking.listing.description}</p>
