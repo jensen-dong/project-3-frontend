@@ -14,6 +14,18 @@ Our planning process involved discussions in Slack and task tracking through a G
 ### Back-End Repository
 Visit our backend repository: [Waterbnb Backend](https://github.com/jensen-dong/project-3-backend/)
 
+## User Stories
+User would like to:
+
+- Sign up and create a profile to gain full access to the site.
+- Log in and out of their accounts to access their profile and keep it secure.
+- Update profile information so their details are accurate.
+- Search for and view all available listings and their details to find a place to stay.
+- Create a new listing to rent out their property.
+- Edit their listings to provide updated information if required.
+- Delete their listings if it's no longer available.
+- Leave and view reviews on listings.
+
 ## Attributions
 - [Unsplash API](https://unsplash.com/developers) for images
 - [React](https://reactjs.org/) for the frontend
